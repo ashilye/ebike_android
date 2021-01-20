@@ -1,0 +1,22 @@
+apply from: "config.gradle"
+
+buildscript {
+    apply from: 'dependencies.gradle'
+    ext {
+        kotlin_version = '1.3.72'
+    }
+
+    addRepository(repositories) // 这样可以使用 dependencies.gradle 声明好的远程仓库源
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.0.2"
+        classpath Deps.kotlinPlugin
+    }
+}
+
+allprojects {
+    addRepository(repositories)
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
