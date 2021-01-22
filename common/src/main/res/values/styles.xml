@@ -23,6 +23,20 @@
     </style>
 
 
+    <style name="common_style_line">
+        <item name="android:layout_height">@dimen/common_line</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/common_color_line</item>
+    </style>
+
+    <style name="common_style_menu_active">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="common_style_menu_inactive">
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="CommonDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/common_trans</item>
@@ -34,7 +48,7 @@
         <item name="android:windowBackground">@color/common_trans</item>
     </style>
 
-    <style name="CommonDialogBottomAnim" parent="android:Animation" mce_bogus="1" >
+    <style name="CommonDialogBottomAnim" mce_bogus="1" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/anim_dialog_up</item>
         <item name="android:windowExitAnimation">@anim/anim_dialog_down</item>
     </style>

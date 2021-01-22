@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="net.hyntech.test.vm.HomeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnav"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_white"
+            app:elevation="2dp"
+            app:itemIconSize="22dp"
+            app:itemTextAppearanceActive="@style/common_style_menu_active"
+            app:itemTextAppearanceInactive="@style/common_style_menu_inactive"
+            app:itemTextColor="@color/selector_menu_text"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/test_bottom_nav_menu" />
+    </LinearLayout>
+</layout>

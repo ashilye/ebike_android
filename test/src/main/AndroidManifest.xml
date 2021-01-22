@@ -21,9 +21,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.WelcomeActivity"
-            android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".ui.activity.WelcomeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonFullscreenTheme" />
+        <activity
+            android:name=".ui.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.HomeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

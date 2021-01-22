@@ -16,6 +16,7 @@ class Constants {
     object SaveInfoKey {
         const val HAS_WELCOME_USUAL = "welcome_usual"
         const val HAS_WELCOME_POLICE = "welcome_police"
+        const val HAS_WELCOME_TEST = "welcome_test"
         const val ACCESS_TOKEN = "accessToken"
     }
 

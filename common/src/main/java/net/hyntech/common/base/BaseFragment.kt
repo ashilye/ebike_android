@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.zy.multistatepage.MultiStateContainer
@@ -32,7 +33,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : B(), Cor
 
     private var loadingDialog: LoadingDialog? = null
 
-    abstract fun bindViewModel()
+    abstract fun bindViewModel():BaseViewModel
 
     open fun hasNavController(): Boolean = false
 
@@ -56,7 +57,17 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : B(), Cor
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.binding.lifecycleOwner = this
-        this.bindViewModel()
+        this.bindViewModel().defUI.let { def ->
+            def.showDialog.observe(this, Observer {
+                showLoading()
+            })
+            def.dismissDialog.observe(this, Observer {
+                dismissLoading()
+            })
+            def.toastEvent.observe(this, Observer {
+                showToast(it)
+            })
+        }
         if (this.hasNavController()) {
             this.navController = Navigation.findNavController(view)
         }

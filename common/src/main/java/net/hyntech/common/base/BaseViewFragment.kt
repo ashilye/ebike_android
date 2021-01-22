@@ -7,7 +7,7 @@ import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.baselib.base.ViewModelLazy
 
 
-abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: BaseFragment<VB, VM>() {
+abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.hyntech.common.base.BaseFragment<VB, VM>() {
 
 
     inline fun <reified VM : ViewModel> viewModels(

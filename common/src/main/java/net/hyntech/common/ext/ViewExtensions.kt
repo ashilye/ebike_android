@@ -71,7 +71,7 @@ fun ImageView.loadConfigImage(
     ).also { c -> c.type = TransType.NORMAL }
 ) = ImageLoader.getInstance().loadImage(BaseApp.instance, config)
 
-//是否快速点击了 true 是, false 否
+//是否快速点击了 true 否, false 是
 fun View.isFastClick(): Boolean {
-    return UIUtils.isFastDoubleClick()
+    return !UIUtils.isFastDoubleClick()
 }
