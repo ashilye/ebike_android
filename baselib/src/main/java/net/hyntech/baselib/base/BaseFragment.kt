@@ -1,0 +1,53 @@
+package net.hyntech.baselib.base
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+
+abstract class BaseFragment : Fragment(), IView {
+
+    private var isFirst: Boolean = true
+
+    abstract fun getLayoutId(): Int
+
+    abstract fun initData(savedInstanceState: Bundle?): Unit
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return setContentLayout(inflater,container)
+    }
+
+    open fun setContentLayout(inflater: LayoutInflater,container: ViewGroup?):View {
+        return inflater.inflate(getLayoutId(),container,false)
+    }
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        this.initData(savedInstanceState)
+        this.onVisible()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        this.onVisible()
+    }
+
+    private fun onVisible() {
+        if (lifecycle.currentState == Lifecycle.State.STARTED && this.isFirst) {
+            this.isFirst = false
+            lazyLoadData()
+        }else if(!this.isFirst){
+            refreshData()
+        }
+    }
+
+    open fun lazyLoadData() {}
+    open fun refreshData(){}
+}

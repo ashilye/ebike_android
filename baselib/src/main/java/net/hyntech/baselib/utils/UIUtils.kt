@@ -23,5 +23,18 @@ class UIUtils {
         fun getDrawable(@DrawableRes resId: Int): Drawable {
             return ResourceUtils.getDrawable(resId)
         }
+
+        private var lastClickTime: Long = 0
+        private const val DELAY_TIME: Long = 600
+
+        fun isFastDoubleClick(): Boolean {
+            val time = System.currentTimeMillis()
+            val lastTime = time - lastClickTime
+            if (0 < lastTime && lastTime < DELAY_TIME) {
+                return true
+            }
+            lastClickTime = time
+            return false
+        }
     }
 }

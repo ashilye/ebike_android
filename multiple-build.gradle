@@ -1,0 +1,127 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+// walle
+apply plugin: 'walle'
+
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+        generateStubs = true
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    useLibrary 'org.apache.http.legacy'
+
+    // 开启 Java 8 支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        /**
+         * Java源文件编码。
+         */
+        encoding "UTF-8"
+        incremental true
+    }
+
+    kotlinOptions {
+        jvmTarget = "${JavaVersion.VERSION_1_8}"
+    }
+
+    // Gradle Plugin 4.0 及以上
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
+
+
+    signingConfigs {
+        debug {
+            storeFile file(keystoreProperties.RELEASE_STOREFILE)
+            storePassword keystoreProperties.RELEASE_STORE_PASSWORD
+            keyAlias keystoreProperties.RELEASE_KEY_ALIAS
+            keyPassword keystoreProperties.RELEASE_KEY_PASSWORD
+        }
+
+        release {
+
+            storeFile file(keystoreProperties.RELEASE_STOREFILE)
+            storePassword keystoreProperties.RELEASE_STORE_PASSWORD
+            keyAlias keystoreProperties.RELEASE_KEY_ALIAS
+            keyPassword keystoreProperties.RELEASE_KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+
+//            debuggable false
+//            //移除无用的资源文件
+//            shrinkResources true
+//            zipAlignEnabled true
+//            minifyEnabled true
+//            signingConfig signingConfigs.release
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            debuggable false
+            //移除无用的资源文件
+            shrinkResources true
+            zipAlignEnabled true
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                def fileName
+                def date = new Date()
+                def formattedDate = date.format('yyyyMMdd')
+                if (variant.buildType.name.equals('release')) {
+                    fileName = "eBike_V${variant.mergedFlavor.versionName}_release_${formattedDate}.apk"
+                } else if (variant.buildType.name.equals('debug')) {
+                    fileName = "eBike_V${variant.mergedFlavor.versionName}_debug_${formattedDate}.apk"
+                }
+                outputFileName = fileName
+            }
+    }
+
+    //添加如下配置就ok了
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        jumboMode = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    testImplementation 'junit:junit:4.12'
+    implementation project(path: ':common')
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+}
+apply from: 'multiple-channel.gradle'

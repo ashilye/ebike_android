@@ -1,3 +1,6 @@
+include ':test'
+include ':usual'
+include ':common'
 include ':baselib'
 include ':app'
 rootProject.name = "ebike_android"

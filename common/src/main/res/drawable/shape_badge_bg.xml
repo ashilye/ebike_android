@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="oval"
+    tools:ignore="ResourceName">
+    <corners android:radius="60dp" />
+    <solid android:color="@color/common_color_badge"/>
+    <stroke android:width="0.5dp" android:color="@color/common_white"/>
+</shape>

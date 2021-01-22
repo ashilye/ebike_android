@@ -1,0 +1,168 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+// Kotlin 需要增加 kapt plugin 才可以使用 DataBinding
+apply plugin: 'kotlin-kapt'
+// navigation
+apply plugin: 'androidx.navigation.safeargs'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+        generateStubs = true
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+    useLibrary 'org.apache.http.legacy'
+
+    resourcePrefix "common_" //给 Module 内的资源名增加前缀, 避免资源名冲突, 建议使用 Module 名作为前缀
+
+    // Gradle Plugin 4.0 及以上
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath true
+                arguments = [eventBusIndex: 'net.hyntech.common.EventBusIndex']
+            }
+        }
+    }
+
+    // 开启 Java 8 支持
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        /**
+         * Java源文件编码。
+         */
+        encoding "UTF-8"
+        incremental true
+    }
+
+    kotlinOptions {
+        jvmTarget = "${JavaVersion.VERSION_1_8}"
+    }
+
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/atomicfu.kotlin_module'
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    //添加如下配置就ok了
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        jumboMode = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    api project(path: ':baselib')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // androidx
+    api androidxs
+
+    //jetPack
+    api deps.lifecycleExtensions
+    api deps.lifecycleJava8
+    api deps.lifecycleProcess
+    api deps.viewModelKTX
+    api deps.natigationFragment
+    api deps.navigationFragmentKTX
+    api deps.navigationUI
+    api deps.navigationUIKTX
+    api deps.natigationRuntimeKTX
+
+    //路由
+    api deps.arouterApi
+    kapt deps.arouterCompiler
+
+    //net
+    api deps.retrofit2
+    api deps.converterGson
+    api deps.loggingInterceptor
+    api deps.persistentCookieJar
+
+    // glide
+    api deps.glide
+    api deps.glideIntegration
+    kapt deps.glideCompiler
+    kapt deps.annotation
+    api deps.glideTransformations
+    api deps.kotson
+
+    //rxPermissions
+    api deps.rxAndroid
+    api deps.rxJava
+    api deps.rxPermissions
+
+    //eventBus
+    api deps.eventBus
+    kapt deps.eventBusAnnotationProcessor
+
+    //room
+    api deps.roomRuntime
+    kapt deps.roomRuntime
+    kapt deps.roomCompiler
+    api deps.roomRxJava2
+    api deps.roomGuava
+    api deps.roomCoroutines
+    androidTestImplementation deps.roomTesting
+
+    //多状态视图
+    api deps.multiStatePage
+
+    //leakcanary
+    debugApi deps.leakcanary
+
+
+}

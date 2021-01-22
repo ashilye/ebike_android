@@ -1,19 +1,14 @@
 package net.hyntech.baselib.app
 
-import android.app.Activity
 import android.app.Application
-import android.os.Bundle
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.ViewModelStoreOwner
-import cat.ereza.customactivityoncrash.CustomActivityOnCrash
-import cat.ereza.customactivityoncrash.config.CaocConfig
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.Utils
-import net.hyntech.baselib.app.config.GlobalConfig
+import net.hyntech.baselib.app.config.Config
 import net.hyntech.baselib.app.manager.AppLifeCycleCallBack
 import net.hyntech.baselib.app.manager.ForebackLifeObserver
-import net.hyntech.baselib.utils.LogUtils
 
 abstract class BaseApp : Application(), ViewModelStoreOwner {
 
@@ -30,6 +25,7 @@ abstract class BaseApp : Application(), ViewModelStoreOwner {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        initApp()
         Utils.init(this)
         SPUtils.getInstance(getAppPackage())
         registerLifecycle()
@@ -37,12 +33,18 @@ abstract class BaseApp : Application(), ViewModelStoreOwner {
         initSDK(this)
     }
 
-    private fun initGlobalSDK(app: Application) {
-        if (GlobalConfig.gIsDebug) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+    open fun initApp(){}
+
+    open fun initGlobalSDK(app: Application) {
+        if (Config.CONFIG_DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
             ARouter.openLog()     // 打印日志
             ARouter.openDebug()   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(app) // 尽可能早，推荐在Application中初始化
+
+
+
+
 
         // Crash 捕捉界面   参考链接 https://blog.csdn.net/huangxiaoguo1/article/details/79053197
 //        CaocConfig.Builder.create() //程序在后台时，发生崩溃的三种处理方式
@@ -81,7 +83,7 @@ abstract class BaseApp : Application(), ViewModelStoreOwner {
 
     private fun registerLifecycle() {
         // 监听所有 Activity 的创建和销毁
-        if (GlobalConfig.gIsNeedActivityManager) {
+        if (Config.CONFIG_ACTIVITY_MANAGER) {
             registerActivityLifecycleCallbacks(AppLifeCycleCallBack())
             ProcessLifecycleOwner.get().lifecycle.addObserver(ForebackLifeObserver())
         }

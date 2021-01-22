@@ -8,17 +8,23 @@ ext {
             versionName      : "1.0.0",
 
             //------平安电车民用--------//
-            applicationIdUsual: "net.hyntech.electricvehicleusual",
+//            applicationIdUsual: "net.hyntech.electricvehicleusual",
 
-//            applicationIdUsual    : "net.hyntech.ebikeusual",
-            versionCodeUsual      : 6,
-            versionNameUsual      : "1.0.6",
+            applicationIdUsual    : "net.hyntech.usual",
+            versionCodeUsual      : 1,
+            versionNameUsual      : "1.0.1",
 
             //------平安电车警用--------//
-            applicationIdPolice: "net.hyntech.electricvehiclepolice",
+//            applicationIdPolice: "net.hyntech.electricvehiclepolice",
 
-//            applicationIdPolice    : "net.hyntech.ebikepolice",
-            versionCodePolice      : 8,
-            versionNamePolice      : "1.0.8"
+            applicationIdPolice    : "net.hyntech.police",
+            versionCodePolice      : 1,
+            versionNamePolice      : "1.0.1",
+
+
+            // 测试 模块
+            applicationIdTest    : "net.hyntech.test",
+            versionCodeTest      : 10,
+            versionNameTest      : "1.1.0"
     ]
 }

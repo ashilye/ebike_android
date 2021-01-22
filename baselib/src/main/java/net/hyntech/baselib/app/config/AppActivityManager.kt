@@ -5,7 +5,7 @@ import android.app.Activity
 
 /**
  * App 全局 Activity 管理器，采用 registerActivityLifecycleCallbacks 监听所有的 Activity 的创建和销毁。
- * 可通过 [GlobalConfig.gIsNeedActivityManager] 关闭这个功能
+ * 可通过 [Config.gIsNeedActivityManager] 关闭这个功能
  */
 object AppActivityManager {
     private val mActivityList = mutableListOf<Activity>()
@@ -57,7 +57,7 @@ object AppActivityManager {
     }
 
     private fun checkEnabled() {
-        if (!GlobalConfig.gIsNeedActivityManager) {
+        if (!Config.CONFIG_ACTIVITY_MANAGER) {
             throw RuntimeException("GlobalConfig.mIsNeedActivityManager 开关没有打开，不能使用 AppActivityManager 类")
         }
     }

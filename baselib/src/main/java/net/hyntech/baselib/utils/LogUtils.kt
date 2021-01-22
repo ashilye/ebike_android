@@ -1,14 +1,13 @@
 package net.hyntech.baselib.utils
 
 import android.util.Log
-import net.hyntech.baselib.app.config.GlobalConfig
+import net.hyntech.baselib.app.config.Config
 
 class LogUtils {
     companion object {
-
         @JvmStatic
         fun logGGQ(s: String?) {
-            if (GlobalConfig.gIsDebug) {
+            if (Config.CONFIG_DEBUG) {
                 Log.i("GGQ", "${s}")
             }
         }

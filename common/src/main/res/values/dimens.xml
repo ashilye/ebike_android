@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--文字大小-->
+    <dimen name="common_font_text">14sp</dimen>
+
+    <dimen name="common_font_title">18sp</dimen>
+
+    <dimen name="common_line">0.5dp</dimen>
+
+    <dimen name="common_padding">12dp</dimen>
+
+</resources>
