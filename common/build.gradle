@@ -159,7 +159,10 @@ dependencies {
 
     //多状态视图
     api deps.multiStatePage
-
+    // 状态栏
+    api deps.immersionbar
+    api deps.immersionbarComponents
+    api deps.immersionbarKTX
     //leakcanary
     debugApi deps.leakcanary
 

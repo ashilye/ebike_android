@@ -20,4 +20,10 @@ class OrgFragment : BaseViewFragment<FragmentOrgBinding, AccountViewModel>() {
 
     override fun initData(savedInstanceState: Bundle?) {
     }
+
+    override fun hasStatusBarMode(): Boolean = true
+
+    override fun getStatusBarColor(): Int = R.color.common_toolbar
+
+
 }

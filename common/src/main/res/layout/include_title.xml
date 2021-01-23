@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="@string/common_back"
-                android:src="@drawable/icon_nav_main" />
+                android:src="@drawable/ic_back" />
 
             <TextView
                 android:id="@+id/tv_title_left"
@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:contentDescription="desc"
-                android:src="@drawable/icon_nav_main"
+                android:src="@drawable/ic_search_24dp"
                 android:visibility="gone" />
 
             <TextView

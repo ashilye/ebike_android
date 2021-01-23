@@ -19,12 +19,26 @@ class LoginFragment : BaseViewFragment<FragmentLoginBinding, AccountViewModel>()
         return viewModel
     }
 
+    override fun hasNavController(): Boolean = true
+
+    override fun hasStatusBarMode(): Boolean = true
+
+    override fun getStatusBarColor(): Int = R.color.common_trans
+
     override fun getLayoutId(): Int = R.layout.fragment_login
 
     override fun initData(savedInstanceState: Bundle?) {
 
         viewModel.loginEvent.observe(this, Observer {
             (activity as BaseActivity).onStartActivity(HomeActivity::class.java,isFinish = true)
+        })
+
+        viewModel.companyEvent.observe(this, Observer {
+            navController?.navigate(R.id.action_loginFragment_to_orgFragment)
+        })
+
+        viewModel.forgetPwdEvent.observe(this, Observer {
+            navController?.navigate(R.id.action_loginFragment_to_forgetPwdFragment)
         })
     }
 }

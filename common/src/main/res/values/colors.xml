@@ -9,6 +9,7 @@
     <color name="common_black">#000000</color>
     <color name="common_trans">#00000000</color>
     <color name="common_gray">#AAAAAA</color>
+    <color name="common_toolbar">#38B7FE</color>
 
     <color name="common_default_background">#FFFFFF</color>
 

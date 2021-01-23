@@ -17,6 +17,8 @@ class AccountViewModel : BaseViewModel() {
     val password: ObservableField<String> = ObservableField()
 
     val loginEvent: SingleLiveEvent<Any> = SingleLiveEvent()
+    val companyEvent: SingleLiveEvent<Any> = SingleLiveEvent()
+    val forgetPwdEvent: SingleLiveEvent<Any> = SingleLiveEvent()
 
     init {
         bgDrawable.set(UIUtils.getDrawable(R.drawable.pic_test))
@@ -24,12 +26,12 @@ class AccountViewModel : BaseViewModel() {
     }
 
     fun onChooseCompany() {
-
+        companyEvent.call()
     }
 
 
     fun onForgetPassword() {
-
+        forgetPwdEvent.call()
     }
 
     fun onLogin() {
