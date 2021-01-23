@@ -5,8 +5,10 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.BarUtils
+import net.hyntech.baselib.R
 import net.hyntech.baselib.utils.Event
 import net.hyntech.baselib.utils.EventBusUtils
 import net.hyntech.baselib.utils.UIUtils
@@ -27,17 +29,20 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentLayout()
-        if(hasStatusBarMode()){
+        if (hasStatusBarMode()) {
             setStatusBarMode()
         }
+        setContentLayout()
         if (hasUsedEventBus()) {
             EventBusUtils.register(this)
         }
         initData(savedInstanceState)
     }
 
-    open fun setStatusBarMode(color: Int = Color.TRANSPARENT) {}
+    open fun setStatusBarMode(color: Int = Color.TRANSPARENT) {
+       BarUtils.getStatusBarHeight()
+
+    }
 
     open fun setContentLayout() {
         setContentView(getLayoutId())

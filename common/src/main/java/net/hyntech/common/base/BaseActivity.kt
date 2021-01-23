@@ -2,7 +2,6 @@ package net.hyntech.common.base
 
 import android.app.Activity
 import android.content.Intent
-import com.gyf.immersionbar.ImmersionBar
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
@@ -76,11 +75,6 @@ abstract class BaseActivity : B() {
 
 
     //-------------titleBar--------------------
-
-    override fun setStatusBarMode(color: Int) {
-        super.setStatusBarMode(color)
-        ImmersionBar.with(this).init();
-    }
 
     inline fun <reified T : BaseActivity> setTitle(txt: String): T {
         tv_title_center?.text = txt

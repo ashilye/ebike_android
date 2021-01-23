@@ -21,10 +21,6 @@ class LoginFragment : BaseViewFragment<FragmentLoginBinding, AccountViewModel>()
 
     override fun hasNavController(): Boolean = true
 
-    override fun hasStatusBarMode(): Boolean = true
-
-    override fun getStatusBarColor(): Int = R.color.common_trans
-
     override fun getLayoutId(): Int = R.layout.fragment_login
 
     override fun initData(savedInstanceState: Bundle?) {

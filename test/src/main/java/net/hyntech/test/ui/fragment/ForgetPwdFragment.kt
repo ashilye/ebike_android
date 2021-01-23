@@ -1,7 +1,9 @@
 package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
+import com.blankj.utilcode.util.BarUtils
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.utils.UIUtils
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.test.R
 import net.hyntech.test.databinding.FragmentForgetPwdBinding
@@ -17,13 +19,13 @@ class ForgetPwdFragment : BaseViewFragment<FragmentForgetPwdBinding, AccountView
         return viewModel
     }
 
+    override fun hasStatusBarMode(): Boolean = true
+
+
     override fun getLayoutId(): Int = R.layout.fragment_forget_pwd
 
     override fun initData(savedInstanceState: Bundle?) {
 
     }
 
-    override fun hasStatusBarMode(): Boolean = true
-
-    override fun getStatusBarColor(): Int = R.color.common_toolbar
 }

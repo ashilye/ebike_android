@@ -12,6 +12,5 @@ class AccountActivity : BaseActivity() {
 
     }
 
-
     override fun hasStatusBarMode(): Boolean = true
 }
