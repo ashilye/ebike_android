@@ -11,6 +11,4 @@ class AccountActivity : BaseActivity() {
     override fun initData(savedInstanceState: Bundle?) {
 
     }
-
-    override fun hasStatusBarMode(): Boolean = true
 }

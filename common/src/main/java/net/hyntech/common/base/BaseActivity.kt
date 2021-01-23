@@ -2,6 +2,7 @@ package net.hyntech.common.base
 
 import android.app.Activity
 import android.content.Intent
+import com.zackratos.ultimatebarx.library.UltimateBarX
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
@@ -75,6 +76,13 @@ abstract class BaseActivity : B() {
 
 
     //-------------titleBar--------------------
+
+    override fun setStatusBarMode(color: Int) {
+        super.setStatusBarMode(color)
+        UltimateBarX.with(this)
+            .color(color)
+            .applyStatusBar()
+    }
 
     inline fun <reified T : BaseActivity> setTitle(txt: String): T {
         tv_title_center?.text = txt

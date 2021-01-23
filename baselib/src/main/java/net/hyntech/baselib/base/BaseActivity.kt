@@ -29,20 +29,17 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentLayout()
         if (hasStatusBarMode()) {
             setStatusBarMode()
         }
-        setContentLayout()
         if (hasUsedEventBus()) {
             EventBusUtils.register(this)
         }
         initData(savedInstanceState)
     }
 
-    open fun setStatusBarMode(color: Int = Color.TRANSPARENT) {
-       BarUtils.getStatusBarHeight()
-
-    }
+    open fun setStatusBarMode(color: Int = Color.TRANSPARENT) {}
 
     open fun setContentLayout() {
         setContentView(getLayoutId())

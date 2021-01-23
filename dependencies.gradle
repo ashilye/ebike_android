@@ -76,7 +76,8 @@ ext {
             lottie                     : "com.airbnb.android:lottie:3.4.2",
 
             //状态栏
-            statusBar                  : "com.github.liangjingkanji:StatusBar:1.1.0",
+//            statusBar                  : "com.github.liangjingkanji:StatusBar:1.1.0",
+            ultimatebarx               : "com.zackratos.ultimatebarx:ultimatebarx:0.4.2",
 
             // 基础依赖包，必须要依赖
 //            immersionbar               : "com.gyf.immersionbar:immersionbar:3.0.0",

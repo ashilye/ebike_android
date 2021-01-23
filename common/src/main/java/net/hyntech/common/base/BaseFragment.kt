@@ -1,5 +1,6 @@
 package net.hyntech.common.base
 
+import com.zackratos.ultimatebarx.library.UltimateBarX
 import kotlinx.android.synthetic.main.include_title.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -41,6 +42,14 @@ abstract class BaseFragment : B() {
 
 
     //-------------titleBar--------------------
+
+    override fun setStatusBarMode(color: Int) {
+        super.setStatusBarMode(color)
+        UltimateBarX.with(this)
+            .color(color)
+            .applyStatusBar()
+    }
+
     inline fun <reified T : BaseFragment> setTitle(txt: String): T {
         tv_title_center?.text = txt
         return this as T

@@ -2,6 +2,7 @@ package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
+import com.zackratos.ultimatebarx.library.UltimateBarX
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
@@ -22,6 +23,15 @@ class LoginFragment : BaseViewFragment<FragmentLoginBinding, AccountViewModel>()
     override fun hasNavController(): Boolean = true
 
     override fun getLayoutId(): Int = R.layout.fragment_login
+
+    override fun hasStatusBarMode(): Boolean = true
+
+    override fun setStatusBarMode(color: Int) {
+        UltimateBarX.with(this)
+            .fitWindow(false)
+            .color(color)
+            .applyStatusBar()
+    }
 
     override fun initData(savedInstanceState: Bundle?) {
 
