@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import net.hyntech.baselib.utils.UIUtils
 
 abstract class BaseFragment : Fragment(), IView {
 
@@ -25,6 +26,12 @@ abstract class BaseFragment : Fragment(), IView {
 
     open fun setContentLayout(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?):View {
         return inflater.inflate(getLayoutId(),container,false)
+    }
+
+    fun onClickProxy(m: () -> Unit) {
+        if (!UIUtils.isFastDoubleClick()) {
+            m()
+        }
     }
 
 
@@ -50,4 +57,6 @@ abstract class BaseFragment : Fragment(), IView {
 
     open fun lazyLoadData() {}
     open fun refreshData(){}
+
+
 }

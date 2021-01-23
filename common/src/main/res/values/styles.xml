@@ -23,6 +23,28 @@
     </style>
 
 
+    <style name="common_style_toolbar">
+        <item name="android:layout_height">?attr/actionBarSize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/common_colorTheme</item>
+    </style>
+
+    <style name="common_style_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/common_font_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="common_style_title_txt">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/common_font_text</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
     <style name="common_style_line">
         <item name="android:layout_height">@dimen/common_line</item>
         <item name="android:layout_width">match_parent</item>

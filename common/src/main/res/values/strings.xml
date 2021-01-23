@@ -3,4 +3,7 @@
 
     <string name="common_text_cancel">取消</string>
     <string name="common_text_confirm">确定</string>
+    <string name="common_back">返回</string>
+    <string name="common_search">搜索</string>
+
 </resources>

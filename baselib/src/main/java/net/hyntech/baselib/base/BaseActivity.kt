@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.BarUtils
 import net.hyntech.baselib.utils.Event
 import net.hyntech.baselib.utils.EventBusUtils
+import net.hyntech.baselib.utils.UIUtils
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
@@ -42,6 +43,12 @@ abstract class BaseActivity : AppCompatActivity(), IView {
 
     open fun setContentLayout() {
         setContentView(getLayoutId())
+    }
+
+    fun onClickProxy(m: () -> Unit) {
+        if (!UIUtils.isFastDoubleClick()) {
+            m()
+        }
     }
 
     /**

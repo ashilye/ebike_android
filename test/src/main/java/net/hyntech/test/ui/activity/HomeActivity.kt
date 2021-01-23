@@ -12,6 +12,10 @@ import net.hyntech.test.ui.fragment.MineFragment
 import net.hyntech.test.vm.HomeViewModel
 
 class HomeActivity : BaseViewActivity<ActivityHomeBinding, HomeViewModel>() {
+
+    private var lastBackPressedMillis: Long = 0
+
+
     private val viewModel by viewModels<HomeViewModel>()
 
     private val list by lazy { listOf(
@@ -50,5 +54,19 @@ class HomeActivity : BaseViewActivity<ActivityHomeBinding, HomeViewModel>() {
             false
         }
 
+    }
+
+    override fun hasEventKeyBack(): Boolean = true
+
+
+    override fun onKeyBack(keyCode: Int) {
+        if (lastBackPressedMillis + 2000 > System.currentTimeMillis()) {
+            //moveTaskToBack(true)
+            this@HomeActivity.finish()
+        } else {
+            lastBackPressedMillis = System.currentTimeMillis()
+            showToast("再按一次退出程序")
+        }
+        super.onKeyBack(keyCode)
     }
 }

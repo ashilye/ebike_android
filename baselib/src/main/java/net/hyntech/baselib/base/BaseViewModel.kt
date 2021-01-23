@@ -12,6 +12,7 @@ import net.hyntech.baselib.http.BaseResponse
 import net.hyntech.baselib.http.error.ExceptionHandle
 import net.hyntech.baselib.http.error.ResponseThrowable
 import net.hyntech.baselib.utils.LogUtils
+import net.hyntech.baselib.utils.UIUtils
 import java.lang.Exception
 
 open class BaseViewModel : ViewModel(), LifecycleObserver {
@@ -21,6 +22,13 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
 
     val app: BaseApp by lazy {
         BaseApp.instance
+    }
+
+
+    fun onClickProxy(m: () -> Unit) {
+        if (!UIUtils.isFastDoubleClick()) {
+            m()
+        }
     }
 
 

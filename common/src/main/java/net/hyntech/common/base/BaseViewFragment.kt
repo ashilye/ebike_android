@@ -14,26 +14,24 @@ import androidx.navigation.Navigation
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
+import kotlinx.android.synthetic.main.include_title.*
 import kotlinx.coroutines.*
 import net.hyntech.baselib.base.BaseViewModel
-import net.hyntech.common.utils.ToastUtils
-import net.hyntech.common.widget.dialog.LoadingDialog
+import net.hyntech.baselib.utils.UIUtils
+import net.hyntech.common.ext.toVisible
 import net.hyntech.common.widget.state.showEmpty
 import net.hyntech.common.widget.state.showError
 import net.hyntech.common.widget.state.showLoading
 import net.hyntech.common.widget.state.showSuccess
-import net.hyntech.baselib.base.BaseFragment as B
 
 
-abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: B(), CoroutineScope by MainScope()  {
+abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.hyntech.common.base.BaseFragment(), CoroutineScope by MainScope()  {
 
     private lateinit var multiState: MultiStateContainer
     protected lateinit var binding: VB
 
     protected var navController: NavController? = null
 
-
-    private var loadingDialog: LoadingDialog? = null
 
     abstract fun bindViewModel():BaseViewModel
 
@@ -80,29 +78,6 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: B(), 
         }
     }
 
-    open fun showLoading() {
-        if (loadingDialog == null) {
-            loadingDialog = context?.let {
-                LoadingDialog(it)
-            }
-        }
-        loadingDialog?.show()
-    }
-
-    open fun dismissLoading() {
-        loadingDialog?.run {
-            if (isShowing) {
-                runBlocking {
-                    delay(500L)
-                }
-                dismiss()
-            }
-        }
-    }
-
-    open fun showToast(s:String?){
-        ToastUtils.showToast(s)
-    }
 
     open fun onStateLoading(){
         multiState.showLoading()

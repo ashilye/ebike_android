@@ -32,7 +32,7 @@ class WelcomeAdapter(val context:Context, val data:Array<Int>, val listener:OnCl
             itemView.findViewById<ImageView>(R.id.iv_img)?.let {
                 it.loadImage(item)
                 it.setOnClickListener { v->
-                    v.isFastClick().apply { listener.onItemClick(pos) }
+                    !v.isFastClick().apply { listener.onItemClick(pos) }
                 }
             }
         }

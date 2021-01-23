@@ -25,16 +25,17 @@ fun View.hideKeyboard() {
 }
 
 fun View.toVisible() {
-    this.visibility = View.VISIBLE
+    if(this.visibility == View.GONE){
+        this.visibility = View.VISIBLE
+    }
 }
 
 fun View.toGone() {
-    this.visibility = View.GONE
+    if(this.visibility == View.VISIBLE){
+        this.visibility = View.GONE
+    }
 }
 
-fun View.toInvisible() {
-    this.visibility = View.GONE
-}
 
 fun EditText.afterTextChanged(action: (String) -> Unit) {
     this.addTextChangedListener(object : TextWatcher {
@@ -71,7 +72,7 @@ fun ImageView.loadConfigImage(
     ).also { c -> c.type = TransType.NORMAL }
 ) = ImageLoader.getInstance().loadImage(BaseApp.instance, config)
 
-//是否快速点击了 true 否, false 是
+//是否快速点击了 true 是, false 否
 fun View.isFastClick(): Boolean {
-    return !UIUtils.isFastDoubleClick()
+    return UIUtils.isFastDoubleClick()
 }

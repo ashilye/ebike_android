@@ -40,7 +40,6 @@ android {
     // Gradle Plugin 4.0 及以上
     buildFeatures {
         dataBinding = true
-        viewBinding = true
     }
 
 
