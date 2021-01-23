@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android" tools:ignore="ResourceName">
+    <!--按下时-->
+    <item android:drawable="@drawable/shape_common_pressed"  android:state_pressed="true"/>
+    <!--失去焦点时-->
+    <item android:drawable="@drawable/shape_common_enable"  android:state_enabled="false"/>
+    <!--默认时-->
+    <item android:drawable="@drawable/shape_common_normal"/>
+</selector>

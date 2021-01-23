@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_account"
+    app:startDestination="@id/loginFragment"
+    tools:ignore="ResourceName">
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="net.hyntech.test.ui.fragment.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_orgFragment"
+            app:destination="@id/orgFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_forgetPwdFragment"
+            app:destination="@id/forgetPwdFragment"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orgFragment"
+        android:name="net.hyntech.test.ui.fragment.OrgFragment"
+        android:label="fragment_org"
+        tools:layout="@layout/fragment_org">
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/forgetPwdFragment"
+        android:name="net.hyntech.test.ui.fragment.ForgetPwdFragment"
+        android:label="fragment_forget_pwd"
+        tools:layout="@layout/fragment_forget_pwd">
+
+        <action
+            android:id="@+id/action_forgetPwdFragment_to_orgFragment"
+            app:destination="@id/orgFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+</navigation>

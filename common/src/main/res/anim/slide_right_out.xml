@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:duration="300"
+    tools:ignore="ResourceName">
+
+    <translate
+        android:fromXDelta="0.0"
+        android:toXDelta="100.0%p" />
+
+    <alpha
+        android:fromAlpha="1.0"
+        android:toAlpha="0.0" />
+
+</set>

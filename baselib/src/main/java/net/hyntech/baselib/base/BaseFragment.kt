@@ -20,10 +20,10 @@ abstract class BaseFragment : Fragment(), IView {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return setContentLayout(inflater,container)
+        return setContentLayout(inflater,container,savedInstanceState)
     }
 
-    open fun setContentLayout(inflater: LayoutInflater,container: ViewGroup?):View {
+    open fun setContentLayout(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?):View {
         return inflater.inflate(getLayoutId(),container,false)
     }
 

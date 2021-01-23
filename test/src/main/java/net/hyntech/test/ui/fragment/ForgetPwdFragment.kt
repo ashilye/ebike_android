@@ -1,20 +1,23 @@
-package net.hyntech.test.ui.activity
+package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
 import net.hyntech.baselib.base.BaseViewModel
-import net.hyntech.common.base.BaseViewActivity
+import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.test.R
-import net.hyntech.test.databinding.ActivityLoginBinding
+import net.hyntech.test.databinding.FragmentForgetPwdBinding
 import net.hyntech.test.vm.AccountViewModel
 
-class LoginActivity:BaseViewActivity<ActivityLoginBinding,AccountViewModel>() {
+class ForgetPwdFragment : BaseViewFragment<FragmentForgetPwdBinding, AccountViewModel>() {
+
     private val viewModel by viewModels<AccountViewModel>()
+
+
     override fun bindViewModel(): BaseViewModel {
         binding.viewModel = viewModel
         return viewModel
     }
 
-    override fun getLayoutId(): Int = R.layout.activity_login
+    override fun getLayoutId(): Int = R.layout.fragment_forget_pwd
 
     override fun initData(savedInstanceState: Bundle?) {
 

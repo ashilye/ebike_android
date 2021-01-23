@@ -10,7 +10,7 @@
     <color name="common_trans">#00000000</color>
     <color name="common_gray">#AAAAAA</color>
 
-    <color name="common_default_background">#F6F6F6</color>
+    <color name="common_default_background">#FFFFFF</color>
 
     <color name="common_color_line">#E0E0E0</color>
     <color name="common_color_toast">#666666</color>

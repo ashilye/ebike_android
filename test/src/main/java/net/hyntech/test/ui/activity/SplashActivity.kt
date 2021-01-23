@@ -47,7 +47,7 @@ class SplashActivity : BaseActivity() {
 
     private fun launchTarget() {
         if(SPUtils.getInstance(BaseApp.instance.getAppPackage()).getBoolean(Constants.SaveInfoKey.HAS_WELCOME_TEST,false)){
-            onStartActivity(LoginActivity::class.java,isFinish = true)
+            onStartActivity(AccountActivity::class.java,isFinish = true)
         }else{
             onStartActivity(WelcomeActivity::class.java,isFinish = true)
         }

@@ -10,13 +10,15 @@ import net.hyntech.test.R
 import net.hyntech.test.ui.adapter.WelcomeAdapter
 import net.hyntech.common.R as CR
 
-class WelcomeActivity:BaseActivity() {
+class WelcomeActivity : BaseActivity() {
 
-    private val list by lazy { arrayOf(
-        CR.drawable.welcome1,
-        CR.drawable.welcome2,
-        CR.drawable.welcome3,
-        CR.drawable.welcome4)
+    private val list by lazy {
+        arrayOf(
+            CR.drawable.welcome1,
+            CR.drawable.welcome2,
+            CR.drawable.welcome3,
+            CR.drawable.welcome4
+        )
     }
 
     override fun getLayoutId(): Int = R.layout.activity_welcome
@@ -32,7 +34,8 @@ class WelcomeActivity:BaseActivity() {
     }
 
     private fun launchTarget() {
-        SPUtils.getInstance(BaseApp.instance.getAppPackage()).put(Constants.SaveInfoKey.HAS_WELCOME_TEST,true)
-        onStartActivity(LoginActivity::class.java,isFinish = true)
+        SPUtils.getInstance(BaseApp.instance.getAppPackage())
+            .put(Constants.SaveInfoKey.HAS_WELCOME_TEST, true)
+        onStartActivity(AccountActivity::class.java, isFinish = true)
     }
 }
