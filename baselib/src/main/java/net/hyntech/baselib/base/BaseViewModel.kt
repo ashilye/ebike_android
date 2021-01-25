@@ -1,6 +1,7 @@
 package net.hyntech.baselib.base
 
 import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.NetworkUtils
@@ -186,6 +187,24 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         val showDialog by lazy { SingleLiveEvent<Any>() }
         val dismissDialog by lazy { SingleLiveEvent<Any>() }
         val toastEvent by lazy { SingleLiveEvent<String>() }
+
+        //0 content --  1 loading --  2 empty --  3 error
+        val stateViewEvent by lazy { MutableLiveData<Int>() }
+        fun showUIContent(){
+            stateViewEvent.postValue(0)
+        }
+
+        fun showUILoading(){
+            stateViewEvent.postValue(1)
+        }
+
+        fun showUIEmpty(){
+            stateViewEvent.postValue(2)
+        }
+
+        fun showUIError(){
+            stateViewEvent.postValue(3)
+        }
     }
 
 

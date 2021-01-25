@@ -1,11 +1,14 @@
 package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.lifecycle.Observer
 import com.zackratos.ultimatebarx.library.UltimateBarX
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
+import net.hyntech.common.ext.afterTextChanged
 import net.hyntech.test.R
 import net.hyntech.test.databinding.FragmentLoginBinding
 import net.hyntech.test.ui.activity.HomeActivity
@@ -15,9 +18,8 @@ class LoginFragment : BaseViewFragment<FragmentLoginBinding, AccountViewModel>()
 
     private val viewModel by viewModels<AccountViewModel>()
 
-    override fun bindViewModel(): BaseViewModel {
+    override fun bindViewModel() {
         binding.viewModel = viewModel
-        return viewModel
     }
 
     override fun hasNavController(): Boolean = true
@@ -35,6 +37,18 @@ class LoginFragment : BaseViewFragment<FragmentLoginBinding, AccountViewModel>()
 
     override fun initData(savedInstanceState: Bundle?) {
 
+        viewModel.defUI.showDialog.observe(this, Observer {
+            showLoading()
+        })
+
+        viewModel.defUI.dismissDialog.observe(this, Observer {
+            dismissLoading()
+        })
+
+        viewModel.defUI.toastEvent.observe(this, Observer {
+            showToast(it)
+        })
+
         viewModel.loginEvent.observe(this, Observer {
             (activity as BaseActivity).onStartActivity(HomeActivity::class.java,isFinish = true)
         })
@@ -46,5 +60,13 @@ class LoginFragment : BaseViewFragment<FragmentLoginBinding, AccountViewModel>()
         viewModel.forgetPwdEvent.observe(this, Observer {
             navController?.navigate(R.id.action_loginFragment_to_forgetPwdFragment)
         })
+
+        binding.etAccount.afterTextChanged {
+            viewModel.account.set(it)
+        }
+
+        binding.etPassword.afterTextChanged {
+            viewModel.password.set(it)
+        }
     }
 }

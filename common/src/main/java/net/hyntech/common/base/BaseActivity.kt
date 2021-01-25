@@ -2,14 +2,16 @@ package net.hyntech.common.base
 
 import android.app.Activity
 import android.content.Intent
+import android.view.View
+import android.widget.LinearLayout
 import com.zackratos.ultimatebarx.library.UltimateBarX
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
 import kotlinx.android.synthetic.main.include_title.*
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import net.hyntech.baselib.utils.UIUtils
+import net.hyntech.common.R
 import net.hyntech.common.ext.toVisible
 import net.hyntech.common.utils.ToastUtils
 import net.hyntech.common.widget.dialog.LoadingDialog
@@ -21,12 +23,26 @@ import net.hyntech.baselib.base.BaseActivity as B
 
 abstract class BaseActivity : B() {
 
+    open fun hasUsedStateView(): Boolean = false
+
+    /**
+     * 多状态视图
+     * 如果使用多状态视图,子类必须重写 hasUsedStateView 并返回 true,即可调用 onStateXXX() 等方法
+     * 标题栏 不属于多状态视图内的View,布局文件中需要有一个id为 common_container 作为 切换的视图主体
+     * 否则为整个 contentView
+     */
     private val multiState by lazy {
-        bindMultiState(object : OnRetryEventListener {
-            override fun onRetryEvent(container: MultiStateContainer?) {
-                onStateRetry(container)
-            }
-        })
+        if(hasUsedStateView()){
+            this.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
+                override fun onRetryEvent(container: MultiStateContainer?) {
+                    onStateRetry(container)
+                }
+            }) ?: bindMultiState(object : OnRetryEventListener {
+                override fun onRetryEvent(container: MultiStateContainer?) {
+                    onStateRetry(container)
+                }
+            })
+        }else{ null }
     }
 
     private var loadingDialog: LoadingDialog? = null
@@ -57,19 +73,26 @@ abstract class BaseActivity : B() {
 
 
     open fun onStateLoading() {
-        multiState.showLoading()
+        if(hasUsedStateView())multiState?.showLoading()
     }
 
     open fun onStateEmpty() {
-        multiState.showEmpty()
+        if(hasUsedStateView())multiState?.showEmpty()
     }
 
     open fun onStateError() {
-        multiState.showError()
+        if(hasUsedStateView())multiState?.showError()
     }
 
     open fun onStateSuccess() {
-        multiState.showSuccess()
+        if(hasUsedStateView()){
+            GlobalScope.launch(Dispatchers.IO) {
+                delay(1000)
+                runOnUiThread {
+                    multiState?.showSuccess()
+                }
+            }
+        }
     }
 
     open fun onStateRetry(container: MultiStateContainer?) {}

@@ -36,8 +36,11 @@ abstract class BaseActivity : AppCompatActivity(), IView {
         if (hasUsedEventBus()) {
             EventBusUtils.register(this)
         }
+        initView(savedInstanceState)
         initData(savedInstanceState)
     }
+
+    open fun initView(savedInstanceState: Bundle?){}
 
     open fun setStatusBarMode(color: Int = Color.TRANSPARENT) {}
 

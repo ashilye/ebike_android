@@ -24,22 +24,12 @@ abstract class BaseViewActivity<VB : ViewDataBinding, VM : BaseViewModel> : net.
 
     protected val binding: VB by lazy { DataBindingUtil.setContentView(this, getLayoutId()) as VB }
 
-    abstract fun bindViewModel():BaseViewModel
+    abstract fun bindViewModel()
 
     override fun setContentLayout() {
         super.setContentLayout()
         this.binding.lifecycleOwner = this
-        this.bindViewModel().defUI.let { def ->
-            def.showDialog.observe(this, Observer {
-                showLoading()
-            })
-            def.dismissDialog.observe(this, Observer {
-                dismissLoading()
-            })
-            def.toastEvent.observe(this, Observer {
-                showToast(it)
-            })
-        }
+        this.bindViewModel()
     }
 
     override fun onDestroy() {

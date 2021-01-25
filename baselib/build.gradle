@@ -104,6 +104,7 @@ dependencies {
     implementation deps.converterGson
     implementation deps.loggingInterceptor
     implementation deps.persistentCookieJar
+    implementation deps.commonsCodec
 
     // glide
     implementation deps.glide

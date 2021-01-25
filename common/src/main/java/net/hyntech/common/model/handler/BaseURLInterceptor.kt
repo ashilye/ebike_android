@@ -2,6 +2,7 @@ package net.hyntech.common.model.handler
 import android.text.TextUtils
 import net.hyntech.baselib.app.config.Config
 import net.hyntech.baselib.utils.LogUtils
+import net.hyntech.common.app.global.Global
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.Interceptor
@@ -25,9 +26,9 @@ class BaseURLInterceptor: Interceptor {
             val headerValue = headerValues.get(0)
             val newBaseUrl: HttpUrl? =
             if (TextUtils.equals("center",headerValue)) {
-                Config.BASE_URL.toHttpUrlOrNull()
+                Global.BASE_URL.toHttpUrlOrNull()
             } else if (TextUtils.equals("hyntech",headerValue)) {
-                Config.BASE_URL.toHttpUrlOrNull()
+                Global.BASE_URL.toHttpUrlOrNull()
             } else if(TextUtils.equals("test",headerValue)){
                 "https://api.hyntech.net".toHttpUrlOrNull()
             }else{

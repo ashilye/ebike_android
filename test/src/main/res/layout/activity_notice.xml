@@ -4,12 +4,11 @@
     tools:ignore="ResourceName">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
             name="viewModel"
-            type="net.hyntech.test.vm.AccountViewModel" />
+            type="net.hyntech.test.vm.NoticeViewModel" />
     </data>
 
     <LinearLayout
@@ -20,16 +19,17 @@
 
         <include layout="@layout/include_title"/>
 
-        <com.scwang.smart.refresh.layout.SmartRefreshLayout
-            android:id="@+id/refreshLayout"
+        <LinearLayout
+            android:id="@+id/common_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
-        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="content" />
+        </LinearLayout>
     </LinearLayout>
 </layout>

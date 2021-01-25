@@ -1,6 +1,7 @@
 package net.hyntech.test.ui.activity
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.common.base.BaseViewActivity
@@ -25,9 +26,8 @@ class HomeActivity : BaseViewActivity<ActivityHomeBinding, HomeViewModel>() {
 
     override fun getLayoutId(): Int = R.layout.activity_home
 
-    override fun bindViewModel(): BaseViewModel {
+    override fun bindViewModel() {
         binding.viewModel = viewModel
-        return viewModel
     }
 
 
@@ -53,6 +53,21 @@ class HomeActivity : BaseViewActivity<ActivityHomeBinding, HomeViewModel>() {
             }
             false
         }
+
+        viewModel.defUI.showDialog.observe(this, Observer {
+            showLoading()
+        })
+
+        viewModel.defUI.dismissDialog.observe(this, Observer {
+            dismissLoading()
+        })
+
+        viewModel.defUI.toastEvent.observe(this, Observer {
+            showToast(it)
+        })
+
+
+
 
     }
 

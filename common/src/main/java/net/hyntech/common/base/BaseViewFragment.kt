@@ -16,6 +16,7 @@ import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
 import kotlinx.coroutines.*
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.common.R
 import net.hyntech.common.widget.state.showEmpty
 import net.hyntech.common.widget.state.showError
 import net.hyntech.common.widget.state.showLoading
@@ -24,15 +25,25 @@ import net.hyntech.common.widget.state.showSuccess
 
 abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.hyntech.common.base.BaseFragment(), CoroutineScope by MainScope()  {
 
+    /**
+     * 多状态视图
+     * 如果使用多状态视图,子类必须重写 hasUsedStateView 并返回 true,即可调用 onStateXXX() 等方法
+     * 标题栏 不属于多状态视图内的View,布局文件中需要有一个id为 common_container 作为 切换的视图主体
+     * 否则为整个 contentView
+     */
     private lateinit var multiState: MultiStateContainer
+
     protected lateinit var binding: VB
 
     protected var navController: NavController? = null
 
 
-    abstract fun bindViewModel():BaseViewModel
+    abstract fun bindViewModel()
 
     open fun hasNavController(): Boolean = false
+
+    open fun hasUsedStateView(): Boolean = false
+
 
 
     inline fun <reified VM : ViewModel> viewModels(): Lazy<VM> {
@@ -47,29 +58,29 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
         savedInstanceState: Bundle?
     ): View {
         this.binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-        val view = binding.root
-        multiState = view.bindMultiState(object : OnRetryEventListener {
-            override fun onRetryEvent(container: MultiStateContainer?) {
-                onStateRetry(container)
+
+        return if(hasUsedStateView()){
+            multiState = binding.root.let {rootView ->
+                rootView.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
+                    override fun onRetryEvent(container: MultiStateContainer?) {
+                        onStateRetry(container)
+                    }
+                }) ?: rootView.bindMultiState(object : OnRetryEventListener {
+                    override fun onRetryEvent(container: MultiStateContainer?) {
+                        onStateRetry(container)
+                    }
+                })
             }
-        })
-        return multiState
+            multiState
+        }else{
+            binding.root
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.binding.lifecycleOwner = this
-        this.bindViewModel().defUI.let { def ->
-            def.showDialog.observe(this, Observer {
-                showLoading()
-            })
-            def.dismissDialog.observe(this, Observer {
-                dismissLoading()
-            })
-            def.toastEvent.observe(this, Observer {
-                showToast(it)
-            })
-        }
+        this.bindViewModel()
         if (this.hasNavController()) {
             this.navController = Navigation.findNavController(view)
         }
@@ -94,6 +105,15 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
 
     open fun onStateRetry(container: MultiStateContainer?){}
 
+
+    /**
+     * 返回
+     */
+    open fun onPopBack(){
+        if(hasNavController()){
+            this.navController?.popBackStack()
+        }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

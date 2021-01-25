@@ -130,6 +130,7 @@ dependencies {
     api deps.converterGson
     api deps.loggingInterceptor
     api deps.persistentCookieJar
+    api deps.commonsCodec
 
     // glide
     api deps.glide
@@ -167,6 +168,15 @@ dependencies {
 //    api deps.immersionbarComponents
 //    api deps.immersionbarKTX
     api deps.ultimatebarx
+    // 刷新库
+    api deps.refreshLayout
+    api deps.refreshHeader
+    api deps.refreshFooter
+
+    // 动画
+    api deps.lottie
+    // loading
+    api deps.avLoading
 
     //leakcanary
     debugApi deps.leakcanary

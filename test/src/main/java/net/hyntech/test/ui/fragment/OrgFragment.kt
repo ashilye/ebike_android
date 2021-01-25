@@ -1,8 +1,10 @@
 package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
+import androidx.lifecycle.Observer
 import com.zackratos.ultimatebarx.library.UltimateBarX
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.baselib.utils.UIUtils
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.test.R
@@ -14,10 +16,11 @@ class OrgFragment : BaseViewFragment<FragmentOrgBinding, AccountViewModel>() {
 
     private val viewModel by viewModels<AccountViewModel>()
 
-    override fun bindViewModel(): BaseViewModel {
+    override fun bindViewModel() {
         binding.viewModel = viewModel
-        return viewModel
     }
+
+    override fun hasNavController(): Boolean = true
 
     override fun hasStatusBarMode(): Boolean = true
 
@@ -30,9 +33,24 @@ class OrgFragment : BaseViewFragment<FragmentOrgBinding, AccountViewModel>() {
     override fun getLayoutId(): Int = R.layout.fragment_org
 
     override fun initData(savedInstanceState: Bundle?) {
+        setTitle<OrgFragment>("选择组织").onBack<OrgFragment> {
+            onPopBack()
+        }
+
+        viewModel.defUI.showDialog.observe(this, Observer {
+            showLoading()
+        })
+
+        viewModel.defUI.dismissDialog.observe(this, Observer {
+            dismissLoading()
+        })
+
+        viewModel.defUI.toastEvent.observe(this, Observer {
+            showToast(it)
+        })
+
+
+
     }
-
-
-
 
 }
