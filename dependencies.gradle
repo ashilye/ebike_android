@@ -90,6 +90,10 @@ ext {
             // kotlin扩展（可选）
 //            immersionbarKTX            : "com.gyf.immersionbar:immersionbar-ktx:3.0.0",
 
+            banner                     : "com.youth.banner:banner:2.1.0",
+            basePopup                  : "com.github.razerdp:BasePopup:2.2.10",
+            photoView                  : "com.github.chrisbanes:PhotoView:2.3.0",
+
             //内存泄漏
             leakcanary                 : "com.squareup.leakcanary:leakcanary-android:2.5",
 

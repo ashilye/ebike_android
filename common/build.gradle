@@ -177,6 +177,12 @@ dependencies {
     api deps.lottie
     // loading
     api deps.avLoading
+    //轮播图
+    api deps.banner
+    //popu
+    api deps.basePopup
+    // 大图预览
+    api deps.photoView
 
     //leakcanary
     debugApi deps.leakcanary

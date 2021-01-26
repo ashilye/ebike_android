@@ -35,11 +35,15 @@ abstract class BaseActivity : B() {
         if(hasUsedStateView()){
             this.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
                 override fun onRetryEvent(container: MultiStateContainer?) {
-                    onStateRetry(container)
+                    onClickProxy {
+                        onStateRetry(container)
+                    }
                 }
             }) ?: bindMultiState(object : OnRetryEventListener {
                 override fun onRetryEvent(container: MultiStateContainer?) {
-                    onStateRetry(container)
+                    onClickProxy {
+                        onStateRetry(container)
+                    }
                 }
             })
         }else{ null }
