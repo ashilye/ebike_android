@@ -9,6 +9,6 @@ abstract class BaseViewHolder<T:Any>(itemView: View): RecyclerView.ViewHolder(it
 
     val itemRoot: View? = itemView.findViewById(R.id.common_item)
 
-    abstract fun setData(data:T?)
+    abstract fun setData(pos:Int,data:T?)
 
 }

@@ -28,7 +28,7 @@ class NoticeAdapter(context: Context) : BaseAdapter<NoticeListEntity.AlarmInfoLi
 
         private val tvTitle:TextView = itemView.findViewById(R.id.tv_title)
 
-        override fun setData(data: NoticeListEntity.AlarmInfoListBean?) {
+        override fun setData(pos: Int, data: NoticeListEntity.AlarmInfoListBean?) {
             tvTitle.text = "${data?.ebikeNo}"
         }
     }

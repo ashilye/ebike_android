@@ -3,4 +3,5 @@
     <item name="common_container" type="id"/>
     <item name="common_item" type="id"/>
     <item name="common_refreshLayout" type="id"/>
+    <item name="common_recyclerView" type="id"/>
 </resources>

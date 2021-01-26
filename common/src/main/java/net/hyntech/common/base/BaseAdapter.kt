@@ -7,19 +7,17 @@ import net.hyntech.baselib.utils.UIUtils
 abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(val context: Context) :
     RecyclerView.Adapter<VH>() {
 
-    protected val list: List<T> = arrayListOf()
+    protected val list: MutableList<T> = mutableListOf()
 
     open fun setData(l: List<T>) {
-        this.list.toMutableList().apply {
-            clear()
-            addAll(l)
-        }
+        this.list.clear()
+        this.list.addAll(l)
         this.notifyDataSetChanged()
     }
 
 
     open fun updataList(l: List<T>) {
-        this.list.toMutableList().addAll(l)
+        this.list.addAll(l)
         this.notifyDataSetChanged()
     }
 
@@ -45,11 +43,11 @@ abstract class BaseAdapter<T : Any, VH : BaseViewHolder<T>>(val context: Context
 
 
     interface OnClickListener<T> {
-        fun onItemClick(pos: Int, item: T?)
+        fun onItemClick(pos: Int = 0, item: T? = null)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.setData(list.get(position))
+        holder.setData(position,list.get(position))
     }
 
 }

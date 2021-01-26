@@ -12,33 +12,25 @@ import net.hyntech.common.ext.loadImage
 import net.hyntech.test.R
 
 
-class WelcomeAdapter(val context:Context, val data:Array<Int>, val listener:OnClickListener) : BaseAdapter<WelcomeAdapter.ViewHolder>() {
+class WelcomeAdapter(context:Context) : BaseAdapter<Int,WelcomeAdapter.ViewHolder>(context) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_welcome,parent,false))
-
     }
 
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.setData(position,data.get(position))
-    }
-
-    inner class ViewHolder(itemView: View) : BaseViewHolder(itemView) {
-        fun setData(pos:Int,item: Int) {
-            itemView.findViewById<ImageView>(R.id.iv_img)?.let {
-                it.loadImage(item)
-                it.setOnClickListener { v->
-                    !v.isFastClick().apply { listener.onItemClick(pos) }
+        inner class ViewHolder(itemView: View) : BaseViewHolder<Int>(itemView) {
+        override fun setData(pos:Int,data: Int?) {
+            itemView.findViewById<ImageView>(R.id.iv_img)?.let {img ->
+                data?.let {
+                    img.loadImage(it)
+                    img.setOnClickListener { v->
+                        !v.isFastClick().apply { l?.onItemClick(pos) }
+                    }
                 }
+
             }
         }
     }
 
-    interface OnClickListener{
-        fun onItemClick(position:Int)
-    }
+
 }
