@@ -45,8 +45,20 @@ class NoticeViewModel:BaseViewModel() {
                 }else{
                     // 数据正常
                     LogUtils.logGGQ("---获取数据-->>${data.alarmInfoList.size}")
-                    defUI.showUIContent()
-                    noticeList.postValue(data.alarmInfoList)
+
+                    val type = (0..2).random()
+                    when(type){
+                        0 ->{
+                            defUI.showUIContent()
+                            noticeList.postValue(data.alarmInfoList)
+                        }
+                        1 ->{
+                            defUI.showUIEmpty()
+                        }
+                        2 ->{
+                            defUI.showUIError()
+                        }
+                    }
                 }
             }?:let {
                 //暂无空

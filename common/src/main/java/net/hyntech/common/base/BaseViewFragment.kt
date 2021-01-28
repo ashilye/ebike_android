@@ -86,9 +86,6 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.binding.lifecycleOwner = this
-
-
-
         this.bindViewModel()
         if (this.hasNavController()) {
             this.navController = Navigation.findNavController(view)

@@ -18,7 +18,7 @@ abstract class BaseListViewFragment<VB : ViewDataBinding, VM : BaseViewModel>:Ba
     override fun initView(savedInstanceState: Bundle?) {
         super.initView(savedInstanceState)
 
-        multiState?.let { v->
+        view?.let { v->
             refreshLayout = v.findViewById(R.id.common_refreshLayout)
             recyclerView = v.findViewById(R.id.common_recyclerView)
             refreshLayout?.setEnableRefresh(isEnableRefresh())//是否启用下拉刷新功能
