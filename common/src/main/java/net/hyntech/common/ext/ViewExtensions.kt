@@ -4,9 +4,15 @@ import android.app.Service
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.core.view.get
+import com.zy.multistatepage.MultiStateContainer
+import com.zy.multistatepage.MultiStatePage
+import com.zy.multistatepage.OnRetryEventListener
+import com.zy.multistatepage.bindMultiState
 import net.hyntech.baselib.app.BaseApp
 import net.hyntech.baselib.utils.UIUtils
 import net.hyntech.baselib.widget.imageloader.ImageLoader
@@ -76,3 +82,38 @@ fun ImageView.loadConfigImage(
 fun View.isFastClick(): Boolean {
     return UIUtils.isFastDoubleClick()
 }
+
+
+//---------多状态布局 Fragment 使用 include_title 的扩展------开始---------
+fun View.bindMultiState2(onRetryEventListener: OnRetryEventListener = OnRetryEventListener {  }) =
+    MultiStatePage.bindMultiState2(this, onRetryEventListener)
+
+fun MultiStatePage.bindMultiState2(
+    targetView: View
+): MultiStateContainer {
+    return bindMultiState2(targetView, null)
+}
+
+fun MultiStatePage.bindMultiState2(
+    targetView: View,
+    onRetryEventListener: OnRetryEventListener? = null
+): MultiStateContainer {
+    val parent = targetView.parent as ViewGroup?
+
+    var targetViewIndex = 0
+    val multiStateContainer =
+        MultiStateContainer(targetView.context, targetView, onRetryEventListener)
+    parent?.let { targetViewParent ->
+        for (i in 0 until targetViewParent.childCount) {
+            if (targetViewParent.getChildAt(i) == targetView) {
+                targetViewIndex = i
+                break
+            }
+        }
+        targetViewParent.removeView(targetView)
+        targetViewParent.addView(multiStateContainer, targetViewIndex, targetView.layoutParams)
+    }
+    multiStateContainer.initialization()
+    return multiStateContainer
+}
+//---------多状态布局 Fragment 使用 include_title 的扩展-------结束--------

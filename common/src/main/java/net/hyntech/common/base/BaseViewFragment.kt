@@ -6,17 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
 import kotlinx.coroutines.*
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.common.R
+import net.hyntech.common.ext.bindMultiState2
 import net.hyntech.common.widget.state.showEmpty
 import net.hyntech.common.widget.state.showError
 import net.hyntech.common.widget.state.showLoading
@@ -31,7 +32,7 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
      * 标题栏 不属于多状态视图内的View,布局文件中需要有一个id为 common_container 作为 切换的视图主体
      * 否则为整个 contentView
      */
-    private lateinit var multiState: MultiStateContainer
+    protected var multiState: MultiStateContainer? = null
 
     protected lateinit var binding: VB
 
@@ -58,10 +59,9 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
         savedInstanceState: Bundle?
     ): View {
         this.binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-
         return if(hasUsedStateView()){
             multiState = binding.root.let {rootView ->
-                rootView.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
+                rootView.findViewById<ViewGroup>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
                     override fun onRetryEvent(container: MultiStateContainer?) {
                         onClickProxy {
                             onStateRetry(container)
@@ -75,7 +75,7 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
                     }
                 })
             }
-            multiState
+            multiState?:binding.root
         }else{
             binding.root
         }
@@ -84,6 +84,9 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.binding.lifecycleOwner = this
+
+
+
         this.bindViewModel()
         if (this.hasNavController()) {
             this.navController = Navigation.findNavController(view)
@@ -92,19 +95,26 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
 
 
     open fun onStateLoading(){
-        multiState.showLoading()
+        if(hasUsedStateView())multiState?.showLoading()
     }
 
     open fun onStateEmpty(){
-        multiState.showEmpty()
+        if(hasUsedStateView())multiState?.showEmpty()
     }
 
     open fun onStateError(){
-        multiState.showError()
+        if(hasUsedStateView())multiState?.showError()
     }
 
     open fun onStateSuccess(){
-        multiState.showSuccess()
+        if(hasUsedStateView()){
+            GlobalScope.launch(Dispatchers.IO) {
+                delay(1000)
+                runOnUiThread {
+                    multiState?.showSuccess()
+                }
+            }
+        }
     }
 
     open fun onStateRetry(container: MultiStateContainer?){}

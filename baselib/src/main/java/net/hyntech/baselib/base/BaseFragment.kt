@@ -21,6 +21,8 @@ abstract class BaseFragment : Fragment(), IView {
 
     abstract fun initData(savedInstanceState: Bundle?): Unit
 
+    open fun initView(savedInstanceState: Bundle?){}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,6 +52,7 @@ abstract class BaseFragment : Fragment(), IView {
         if (hasStatusBarMode()) {
             setStatusBarMode()
         }
+        this.initView(savedInstanceState)
         this.initData(savedInstanceState)
         this.onVisible()
     }

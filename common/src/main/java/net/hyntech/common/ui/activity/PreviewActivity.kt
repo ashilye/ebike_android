@@ -3,7 +3,6 @@ package net.hyntech.common.ui.activity
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Website.URL
 import android.text.TextUtils
 import android.widget.ImageView
 import android.widget.TextView
