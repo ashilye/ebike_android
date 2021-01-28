@@ -13,7 +13,7 @@
         android:id="@+id/img_empty"
         android:layout_width="wrap_content"
         android:layout_height="120dp"
-        android:src="@mipmap/state_empty" />
+        android:src="@mipmap/empty" />
 
     <TextView
         android:id="@+id/tv_empty_msg"
@@ -23,5 +23,10 @@
         android:gravity="center"
         android:maxEms="15"
         android:textSize="@dimen/common_font_text"
-        android:text="空数据" />
+        android:text="暂无数据" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="my" />
 </LinearLayout>

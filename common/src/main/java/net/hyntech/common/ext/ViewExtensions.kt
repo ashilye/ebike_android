@@ -82,38 +82,3 @@ fun ImageView.loadConfigImage(
 fun View.isFastClick(): Boolean {
     return UIUtils.isFastDoubleClick()
 }
-
-
-//---------多状态布局 Fragment 使用 include_title 的扩展------开始---------
-fun View.bindMultiState2(onRetryEventListener: OnRetryEventListener = OnRetryEventListener {  }) =
-    MultiStatePage.bindMultiState2(this, onRetryEventListener)
-
-fun MultiStatePage.bindMultiState2(
-    targetView: View
-): MultiStateContainer {
-    return bindMultiState2(targetView, null)
-}
-
-fun MultiStatePage.bindMultiState2(
-    targetView: View,
-    onRetryEventListener: OnRetryEventListener? = null
-): MultiStateContainer {
-    val parent = targetView.parent as ViewGroup?
-
-    var targetViewIndex = 0
-    val multiStateContainer =
-        MultiStateContainer(targetView.context, targetView, onRetryEventListener)
-    parent?.let { targetViewParent ->
-        for (i in 0 until targetViewParent.childCount) {
-            if (targetViewParent.getChildAt(i) == targetView) {
-                targetViewIndex = i
-                break
-            }
-        }
-        targetViewParent.removeView(targetView)
-        targetViewParent.addView(multiStateContainer, targetViewIndex, targetView.layoutParams)
-    }
-    multiStateContainer.initialization()
-    return multiStateContainer
-}
-//---------多状态布局 Fragment 使用 include_title 的扩展-------结束--------

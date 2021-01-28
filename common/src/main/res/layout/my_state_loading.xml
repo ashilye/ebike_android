@@ -8,19 +8,6 @@
     android:orientation="vertical"
     tools:ignore="ResourceName">
 
-<!--    <ProgressBar-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content" />-->
-
-<!--    <com.airbnb.lottie.LottieAnimationView-->
-<!--        android:layout_width="150dp"-->
-<!--        android:layout_height="150dp"-->
-<!--        android:layout_gravity="center"-->
-<!--        app:lottie_autoPlay="true"-->
-<!--        app:lottie_fileName="lottie_loading.json"-->
-<!--        app:lottie_loop="true" />-->
-
-
     <com.wang.avi.AVLoadingIndicatorView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -37,4 +24,8 @@
         android:paddingTop="@dimen/common_padding"
         android:text="loading..." />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="my" />
 </LinearLayout>

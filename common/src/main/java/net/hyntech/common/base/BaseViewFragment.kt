@@ -10,19 +10,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
 import kotlinx.coroutines.*
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.common.R
-import net.hyntech.common.ext.bindMultiState2
 import net.hyntech.common.widget.state.showEmpty
 import net.hyntech.common.widget.state.showError
 import net.hyntech.common.widget.state.showLoading
 import net.hyntech.common.widget.state.showSuccess
-
 
 abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.hyntech.common.base.BaseFragment(), CoroutineScope by MainScope()  {
 
@@ -75,7 +72,12 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
                     }
                 })
             }
-            multiState?:binding.root
+//            multiState?:binding.root
+            if(binding.root.findViewById<ViewGroup>(R.id.common_container) == null){
+                multiState!!
+            }else{
+                binding.root
+            }
         }else{
             binding.root
         }
@@ -108,12 +110,13 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
 
     open fun onStateSuccess(){
         if(hasUsedStateView()){
-            GlobalScope.launch(Dispatchers.IO) {
-                delay(1000)
-                runOnUiThread {
-                    multiState?.showSuccess()
-                }
-            }
+//            GlobalScope.launch(Dispatchers.IO) {
+//                delay(1000)
+//                runOnUiThread {
+//                    multiState?.showSuccess()
+//                }
+//            }
+            multiState?.showSuccess()
         }
     }
 

@@ -12,7 +12,7 @@
         android:id="@+id/img_error"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:src="@mipmap/state_error" />
+        android:src="@mipmap/error" />
 
     <TextView
         android:id="@+id/tv_error_msg"
@@ -38,4 +38,9 @@
         android:background="@drawable/selector_retry"
         android:textSize="@dimen/common_font_text"
         android:textColor="@color/common_white" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="my" />
 </LinearLayout>

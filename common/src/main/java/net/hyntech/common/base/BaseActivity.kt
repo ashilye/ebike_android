@@ -3,7 +3,6 @@ package net.hyntech.common.base
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import android.widget.LinearLayout
 import com.zackratos.ultimatebarx.library.UltimateBarX
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
@@ -90,12 +89,13 @@ abstract class BaseActivity : B() {
 
     open fun onStateSuccess() {
         if(hasUsedStateView()){
-            GlobalScope.launch(Dispatchers.IO) {
-                delay(1000)
-                runOnUiThread {
-                    multiState?.showSuccess()
-                }
-            }
+//            GlobalScope.launch(Dispatchers.IO) {
+//                delay(1000)
+//                runOnUiThread {
+//                    multiState?.showSuccess()
+//                }
+//            }
+            multiState?.showSuccess()
         }
     }
 
