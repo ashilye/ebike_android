@@ -45,8 +45,7 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
             override fun onPhotoClick() {
 
-            } })
-    }
+            } }) }
 
 
     companion object {
