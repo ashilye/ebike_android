@@ -13,6 +13,7 @@ import net.hyntech.baselib.utils.UIUtils
 abstract class BaseFragment : Fragment(), IView {
 
 
+    /// 是否第一次加载 用于懒加载
     private var isFirst: Boolean = true
 
     open fun hasStatusBarMode(): Boolean = false

@@ -20,6 +20,10 @@ import net.hyntech.common.widget.state.showLoading
 import net.hyntech.common.widget.state.showSuccess
 import net.hyntech.baselib.base.BaseActivity as B
 
+/***
+ * 上层基础组件封装
+ * 用于无网络请求等简单页面
+ */
 abstract class BaseActivity : B() {
 
     open fun hasUsedStateView(): Boolean = false
@@ -50,6 +54,7 @@ abstract class BaseActivity : B() {
 
     private var loadingDialog: LoadingDialog? = null
 
+    /// 展示 loading
     open fun showLoading() {
         if (loadingDialog == null) {
             loadingDialog = this?.let {
@@ -59,6 +64,7 @@ abstract class BaseActivity : B() {
         loadingDialog?.show()
     }
 
+    /// 关闭 loading
     open fun dismissLoading() {
         loadingDialog?.run {
             if (isShowing) {
@@ -70,23 +76,39 @@ abstract class BaseActivity : B() {
         }
     }
 
+    /***
+     * toast
+     * @param s 显示内容
+     */
     open fun showToast(s: String?) {
         ToastUtils.showToast(s)
     }
 
 
+    /***
+     * 多状态布局 加载页面
+     */
     open fun onStateLoading() {
         if(hasUsedStateView())multiState?.showLoading()
     }
 
+    /***
+     * 多状态布局 空页面
+     */
     open fun onStateEmpty() {
         if(hasUsedStateView())multiState?.showEmpty()
     }
 
+    /***
+     * 多状态布局 错误页面
+     */
     open fun onStateError() {
         if(hasUsedStateView())multiState?.showError()
     }
 
+    /***
+     * 多状态布局 内容页面
+     */
     open fun onStateSuccess() {
         if(hasUsedStateView()){
 //            GlobalScope.launch(Dispatchers.IO) {
@@ -99,6 +121,9 @@ abstract class BaseActivity : B() {
         }
     }
 
+    /***
+     * 多状态布局 错误页面的 重试
+     */
     open fun onStateRetry(container: MultiStateContainer?) {}
 
 
@@ -160,6 +185,7 @@ abstract class BaseActivity : B() {
 
     //------------end------------------
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -167,7 +193,10 @@ abstract class BaseActivity : B() {
         }
     }
 
-
+    /***
+     * 页面返回结果回调封装
+     *  子类重写
+     */
     open fun onEventResult(requestCode: Int, data: Intent?) {}
 
 }

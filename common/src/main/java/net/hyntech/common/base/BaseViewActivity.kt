@@ -10,9 +10,15 @@ import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.baselib.base.ViewModelLazy
-
+/***
+ * 上层基础组件封装
+ * 用于 viewModel 页面, 自动约束携程
+ */
 abstract class BaseViewActivity<VB : ViewDataBinding, VM : BaseViewModel> : net.hyntech.common.base.BaseActivity(), CoroutineScope by MainScope() {
 
+    /***
+     *  创建 viewModel
+     */
     inline fun <reified VM : ViewModel> viewModels(
         noinline factoryProducer: (() -> ViewModelProvider.Factory)? = null
     ): Lazy<VM> {
