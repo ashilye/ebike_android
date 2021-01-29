@@ -1,11 +1,13 @@
 package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zackratos.ultimatebarx.library.UltimateBarX
 import com.zy.multistatepage.MultiStateContainer
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.base.ViewState
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.baselib.utils.UIUtils
 import net.hyntech.common.base.BaseAdapter
@@ -73,10 +75,10 @@ class OrgFragment : BaseListViewFragment<FragmentOrgBinding, AccountViewModel>()
         viewModel.defUI.stateViewEvent.observe(this, Observer {
             LogUtils.logGGQ("多状态视图--->${it}")
             when(it){
-                0 -> onStateSuccess()
-                1 -> onStateLoading()
-                2 -> onStateEmpty()
-                3 -> onStateError()
+                ViewState.SUCCESS -> onStateSuccess()
+                ViewState.LOADING -> onStateLoading()
+                ViewState.EMPTY -> onStateEmpty()
+                ViewState.ERROR -> onStateError()
             }
         })
 

@@ -189,21 +189,21 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         val toastEvent by lazy { SingleLiveEvent<String>() }
 
         //0 content --  1 loading --  2 empty --  3 error
-        val stateViewEvent by lazy { MutableLiveData<Int>() }
+        val stateViewEvent by lazy { MutableLiveData<ViewState>() }
         fun showUIContent(){
-            stateViewEvent.postValue(0)
+            stateViewEvent.postValue(ViewState.SUCCESS)
         }
 
         fun showUILoading(){
-            stateViewEvent.postValue(1)
+            stateViewEvent.postValue(ViewState.LOADING)
         }
 
         fun showUIEmpty(){
-            stateViewEvent.postValue(2)
+            stateViewEvent.postValue(ViewState.EMPTY)
         }
 
         fun showUIError(){
-            stateViewEvent.postValue(3)
+            stateViewEvent.postValue(ViewState.ERROR)
         }
     }
 

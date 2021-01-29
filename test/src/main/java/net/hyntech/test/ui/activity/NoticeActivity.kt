@@ -3,12 +3,11 @@ package net.hyntech.test.ui.activity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.zy.multistatepage.MultiStateContainer
+import net.hyntech.baselib.base.ViewState
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.common.base.BaseAdapter
 import net.hyntech.common.base.BaseListViewActivity
-import net.hyntech.common.base.BaseViewActivity
 import net.hyntech.common.model.entity.NoticeListEntity
 import net.hyntech.test.R
 import net.hyntech.test.databinding.ActivityNoticeBinding
@@ -60,10 +59,10 @@ class NoticeActivity : BaseListViewActivity<ActivityNoticeBinding, NoticeViewMod
         viewModel.defUI.stateViewEvent.observe(this, Observer {
             LogUtils.logGGQ("多状态视图--->${it}")
             when(it){
-                0 -> onStateSuccess()
-                1 -> onStateLoading()
-                2 -> onStateEmpty()
-                3 -> onStateError()
+                ViewState.SUCCESS -> onStateSuccess()
+                ViewState.LOADING -> onStateLoading()
+                ViewState.EMPTY -> onStateEmpty()
+                ViewState.ERROR -> onStateError()
             }
         })
 
