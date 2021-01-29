@@ -40,13 +40,22 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
     private val pictureDialog by lazy {
         PictureOptionDialog(requireActivity(),object :PictureOptionDialog.OnClickListener{
             override fun onCameraClick() {
-
+                openCamer()
             }
 
             override fun onPhotoClick() {
-
+                openPhoto()
             } }) }
 
+    private fun openCamer() {
+        showToast("访问相机")
+
+    }
+
+    private fun openPhoto() {
+        showToast("访问相册")
+
+    }
 
     companion object {
         fun getInstance(viewModel: HomeViewModel): MineFragment {

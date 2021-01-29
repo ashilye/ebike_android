@@ -14,6 +14,7 @@ import net.hyntech.common.base.BaseAdapter
 import net.hyntech.common.base.BaseListViewFragment
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.model.entity.NoticeListEntity
+import net.hyntech.common.widget.decoration.SimpleItemDecoration
 import net.hyntech.test.R
 import net.hyntech.common.R as CR
 import net.hyntech.test.databinding.FragmentOrgBinding
@@ -70,6 +71,7 @@ class OrgFragment : BaseListViewFragment<FragmentOrgBinding, AccountViewModel>()
         })
 
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView?.addItemDecoration(SimpleItemDecoration(requireContext()))
         recyclerView?.adapter = noticeAdapter
 
         viewModel.defUI.stateViewEvent.observe(this, Observer {
