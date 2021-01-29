@@ -194,11 +194,10 @@
 
 -keep class net.hyntech.**.app.** { *; }
 -keep class net.hyntech.**.base.** { *; }
--keep class net.hyntech.**.ext.** { *; }
 -keep class net.hyntech.**.db.** { *; }
--keep class net.hyntech.**.global.** { *; }
+-keep class net.hyntech.**.ext.** { *; }
+-keep class net.hyntech.**.http.** { *; }
 -keep class net.hyntech.**.provider.** { *; }
--keep class net.hyntech.**.impl.** { *; }
 -keep class net.hyntech.**.utils.** { *; }
 -keep class net.hyntech.**.widget.** { *; }
 -keep class net.hyntech.**.entity.** { *; }

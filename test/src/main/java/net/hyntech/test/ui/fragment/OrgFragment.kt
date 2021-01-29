@@ -71,7 +71,7 @@ class OrgFragment : BaseListViewFragment<FragmentOrgBinding, AccountViewModel>()
         })
 
         recyclerView?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView?.addItemDecoration(SimpleItemDecoration(requireContext()))
+//        recyclerView?.addItemDecoration(SimpleItemDecoration(requireContext()))
         recyclerView?.adapter = noticeAdapter
 
         viewModel.defUI.stateViewEvent.observe(this, Observer {

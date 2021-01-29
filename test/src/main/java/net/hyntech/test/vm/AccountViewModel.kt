@@ -89,7 +89,7 @@ class AccountViewModel : BaseViewModel() {
 
 
     private var pageNo: Int = 1
-    private var pageSize: Int = 3
+    private var pageSize: Int = 10
     var lastPage: Boolean = true
 
     val noticeList: MutableLiveData<List<NoticeListEntity.AlarmInfoListBean>> = MutableLiveData()

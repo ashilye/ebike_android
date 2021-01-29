@@ -58,11 +58,21 @@ android {
 
     buildTypes {
         debug {
-            minifyEnabled false
+            //library 不移除无用的资源文件
+            shrinkResources false
+            //开启压缩
+            zipAlignEnabled true
+            //开启混淆
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
+            //library 不移除无用的资源文件
+            shrinkResources false
+            //开启压缩
+            zipAlignEnabled true
+            //开启混淆
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
