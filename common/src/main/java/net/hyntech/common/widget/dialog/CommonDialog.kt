@@ -11,7 +11,7 @@ import net.hyntech.common.R
 
 class CommonDialog(context: Context,
                    val title: String = UIUtils.getString(R.string.common_tip_warm),
-                   val content: String,
+                   val content: String = "",
                    val cancle: String = UIUtils.getString(R.string.common_text_cancel),
                    val confirm: String = UIUtils.getString(R.string.common_text_confirm),
                    val listener:OnClickListener,

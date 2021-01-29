@@ -5,20 +5,28 @@ import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.PathUtils
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.xuexiang.xupdate.XUpdate
+import com.xuexiang.xupdate._XUpdate
+import com.xuexiang.xupdate.service.OnFileDownloadListener
+import net.hyntech.baselib.app.config.AppActivityManager
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.baselib.utils.PermissionUtil
 import net.hyntech.baselib.utils.RequestPermission
 import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
+import net.hyntech.common.model.entity.AppUpdateEntity
 import net.hyntech.common.provider.ARouterConstants
 import net.hyntech.common.widget.dialog.CommonDialog
 import net.hyntech.common.widget.dialog.LiveDialog
 import net.hyntech.common.widget.dialog.PictureOptionDialog
+import net.hyntech.common.widget.update.UpdateDialog
 import net.hyntech.test.R
 import net.hyntech.test.databinding.FragmentMineBinding
 import net.hyntech.test.vm.HomeViewModel
+import java.io.File
 
 class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBinding,HomeViewModel>() {
 
@@ -111,7 +119,58 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
                 }
             }, rxPermissions)
         }
+
+        binding.btnUpdate.setOnClickListener {
+            val data = AppUpdateEntity("type","version",100,"https://www.hyntech.net/appdownload/download/app-release-police-1.0.8-8.apk","content","time")
+            showUpdateDialog(data)
+        }
     }
+
+    private var updateDialog: UpdateDialog? = null
+
+    private fun showUpdateDialog(data:AppUpdateEntity){
+        if (updateDialog == null) {
+            updateDialog = UpdateDialog(requireActivity(), data, object : UpdateDialog.OnClickListener {
+                override fun onConfirmClick(url: String) {
+                    onDownloadApk(url)
+                }
+                override fun onCancelClick() {
+                    super.onCancelClick()
+                    showToast("取消更新")
+                }
+            },isCancelable = true)
+        }
+        updateDialog?.let {
+            it.show()
+        }
+    }
+
+    private fun onDownloadApk(url: String) {
+        XUpdate.newBuild(requireActivity())
+            .apkCacheDir(PathUtils.getExternalDownloadsPath()) //设置下载缓存的根目录
+            .build()
+            .download(url,object : OnFileDownloadListener {
+                override fun onStart() {}
+                override fun onProgress(progress: Float, total: Long) {
+                    updateDialog?.setProgress(progress)
+                }
+                override fun onError(throwable: Throwable?) {}
+                override fun onCompleted(file: File?): Boolean {
+                    updateDialog?.cancel()
+                    file?.let {
+                        installApk(it)
+                        return true
+                    }
+                    return false
+                }
+            })
+    }
+
+    private fun installApk(file: File){
+        //填写文件所在的路径
+        _XUpdate.startInstallApk(requireActivity(), file)
+    }
+    //----------------update---------------------
 
     private val rxPermissions: RxPermissions by lazy { RxPermissions(this) }
 

@@ -183,6 +183,9 @@ dependencies {
     api deps.basePopup
     // 大图预览
     api deps.photoView
+    // 版本更新
+    api deps.xUpdate
+    api deps.okhttputils
 
     // 轮播图
     api deps.banner
