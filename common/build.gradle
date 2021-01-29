@@ -184,6 +184,9 @@ dependencies {
     // 大图预览
     api deps.photoView
 
+    // 轮播图
+    api deps.banner
+
     //leakcanary
     debugApi deps.leakcanary
 
