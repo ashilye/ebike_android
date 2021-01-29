@@ -1,0 +1,32 @@
+apply from:"../multiple-build.gradle"
+
+
+android {
+    resourcePrefix "police_" //给 Module 内的资源名增加前缀, 避免资源名冲突, 建议使用 Module 名作为前缀
+
+    defaultConfig {
+        applicationId rootProject.ext.android["applicationIdPolice"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCodePolice"]
+        versionName rootProject.ext.android["versionNamePolice"]
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath true
+                arguments = [eventBusIndex: project.getName() + '.EventBusIndex' ]
+            }
+        }
+    }
+
+
+}
+
+dependencies {
+
+}
