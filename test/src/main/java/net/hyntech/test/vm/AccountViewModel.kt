@@ -25,8 +25,8 @@ class AccountViewModel : BaseViewModel() {
     val bgDrawable: ObservableField<Drawable> = ObservableField()
     val verName: ObservableField<String> = ObservableField("")
 
-    val account: ObservableField<String> = ObservableField()
-    val password: ObservableField<String> = ObservableField()
+    val account: ObservableField<String> = ObservableField("18537385619")
+    val password: ObservableField<String> = ObservableField("000000")
 
 
     val loginEvent: SingleLiveEvent<Any> = SingleLiveEvent()

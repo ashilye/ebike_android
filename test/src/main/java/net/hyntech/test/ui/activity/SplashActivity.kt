@@ -16,7 +16,7 @@ class SplashActivity : BaseActivity() {
 
     private var dialog: CommonDialog? = null
 
-    private val rxPermissions: RxPermissions = RxPermissions(this)
+    private val rxPermissions: RxPermissions by lazy { RxPermissions(this) }
 
     override fun getLayoutId(): Int = R.layout.activity_splash
 

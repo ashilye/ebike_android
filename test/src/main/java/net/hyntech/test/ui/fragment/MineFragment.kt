@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.AppUtils
+import com.tbruyelle.rxpermissions2.RxPermissions
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.utils.PermissionUtil
+import net.hyntech.baselib.utils.RequestPermission
 import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.provider.ARouterConstants
 import net.hyntech.common.widget.dialog.CommonDialog
+import net.hyntech.common.widget.dialog.LiveDialog
 import net.hyntech.common.widget.dialog.PictureOptionDialog
 import net.hyntech.test.R
 import net.hyntech.test.databinding.FragmentMineBinding
@@ -34,6 +39,8 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
             } })
     }
+
+
     companion object {
         fun getInstance(viewModel: HomeViewModel): MineFragment {
             return MineFragment(viewModel)
@@ -65,7 +72,6 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
         binding.btnPreview.setOnClickListener {
 
-
             val bundle = Bundle()
             val pos:Int = 2
             val list = java.util.ArrayList<String>()
@@ -87,6 +93,44 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
         binding.btnPicture.setOnClickListener {
             pictureDialog.show()
+        }
+
+        binding.btnPermissions.setOnClickListener {
+            PermissionUtil.applyCamera(object : RequestPermission {
+                override fun onRequestPermissionSuccess() {
+                    showToast("权限通过")
+                }
+
+                override fun onRequestPermissionFailure(permissions: List<String>) {
+                    showPermissionsDialog()
+                }
+
+                override fun onRequestPermissionFailureWithAskNeverAgain(permissions: List<String>) {
+                    showPermissionsDialog()
+                }
+            }, rxPermissions)
+        }
+    }
+
+    private val rxPermissions: RxPermissions by lazy { RxPermissions(this) }
+    private val permissionsDialog by lazy {
+        LiveDialog(listener = object : LiveDialog.OnClickListener {
+            override fun onConfirmClick() {
+                AppUtils.launchAppDetailsSettings()
+            }
+
+            override fun onCancleClick() {
+                super.onCancleClick()
+                showToast("取消")
+            }
+        })
+    }
+
+    private fun showPermissionsDialog(){
+        permissionsDialog.apply {
+            this.showNow(this@MineFragment.childFragmentManager,"PermissionsDialog")
+            this.setTitleText("权限申请")
+            this.setContentText("相机权限")
         }
     }
 }

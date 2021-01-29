@@ -37,5 +37,11 @@
             android:text="picture"
             />
 
+        <Button
+            android:id="@+id/btn_permissions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="permissions"
+            />
     </LinearLayout>
 </layout>
