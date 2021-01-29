@@ -98,7 +98,8 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
         binding.btnPermissions.setOnClickListener {
             PermissionUtil.applyCamera(object : RequestPermission {
                 override fun onRequestPermissionSuccess() {
-                    showToast("权限通过")
+                    //showToast("权限通过")
+                    showPermissionsDialog()
                 }
 
                 override fun onRequestPermissionFailure(permissions: List<String>) {
@@ -113,24 +114,54 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
     }
 
     private val rxPermissions: RxPermissions by lazy { RxPermissions(this) }
-    private val permissionsDialog by lazy {
-        LiveDialog(listener = object : LiveDialog.OnClickListener {
-            override fun onConfirmClick() {
-                AppUtils.launchAppDetailsSettings()
-            }
 
-            override fun onCancleClick() {
-                super.onCancleClick()
-                showToast("取消")
-            }
-        })
-    }
 
+
+
+    // dialogFragment
+//    private val permissionsDialog by lazy {
+//        LiveDialog(listener = object : LiveDialog.OnClickListener {
+//            override fun onConfirmClick() {
+//                AppUtils.launchAppDetailsSettings()
+//            }
+//
+//            override fun onCancleClick() {
+//                super.onCancleClick()
+//                showToast("取消")
+//            }
+//        })
+//    }
+
+    // dialog
+    private var permissionsDialog:CommonDialog? = null
     private fun showPermissionsDialog(){
-        permissionsDialog.apply {
-            this.showNow(this@MineFragment.childFragmentManager,"PermissionsDialog")
-            this.setTitleText("权限申请")
-            this.setContentText("相机权限")
+        permissionsDialog ?: CommonDialog(requireActivity(),
+            "权限申请",
+            "请开启相机权限，否则您无法正常使用该功能",
+            "不同意",
+            "前往开启",object :CommonDialog.OnClickListener{
+                override fun onCancelClick() {
+                    showToast("取消")
+                }
+                override fun onConfirmClick() {
+                    AppUtils.launchAppDetailsSettings()
+                }
+            },isCancelable = true).let {
+            if (!it.isShowing) it.show()
         }
     }
+
+
+
+
+
+
+
+//    private fun showPermissionsDialog(){
+//        permissionsDialog.apply {
+//            this.showNow(this@MineFragment.childFragmentManager,"PermissionsDialog")
+//            this.setTitleText("权限申请")
+//            this.setContentText("相机权限")
+//        }
+//    }
 }

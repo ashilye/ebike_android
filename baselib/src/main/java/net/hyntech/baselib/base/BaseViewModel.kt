@@ -80,6 +80,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
      * @param error 失败回调
      * @param complete  完成回调（无论成功失败都会调用）
      * @param isShowDialog 是否显示加载框
+     * @param isShowToast 是否显示错误提示
      */
     fun <T> launchOnlyResult(
         block: suspend CoroutineScope.() -> BaseResponse<T>,
