@@ -59,7 +59,7 @@ class SplashActivity : BaseActivity() {
             "请开启必要权限，否则您无法正常使用一些功能",
             "不同意",
             "前往开启",object :CommonDialog.OnClickListener{
-                override fun onCancleClick() {
+                override fun onCancelClick() {
                     onFinish()
             }
                 override fun onConfirmClick() {

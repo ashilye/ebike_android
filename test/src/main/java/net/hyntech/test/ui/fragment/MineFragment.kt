@@ -9,12 +9,31 @@ import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.provider.ARouterConstants
+import net.hyntech.common.widget.dialog.CommonDialog
+import net.hyntech.common.widget.dialog.PictureOptionDialog
 import net.hyntech.test.R
 import net.hyntech.test.databinding.FragmentMineBinding
 import net.hyntech.test.vm.HomeViewModel
 
 class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBinding,HomeViewModel>() {
 
+
+    private val commonDialog by lazy { CommonDialog(requireActivity(),content = "提示内容",listener = object :
+        CommonDialog.OnClickListener{
+        override fun onConfirmClick() {
+          showToast("确定")
+        } }) }
+
+    private val pictureDialog by lazy {
+        PictureOptionDialog(requireActivity(),object :PictureOptionDialog.OnClickListener{
+            override fun onCameraClick() {
+
+            }
+
+            override fun onPhotoClick() {
+
+            } })
+    }
     companion object {
         fun getInstance(viewModel: HomeViewModel): MineFragment {
             return MineFragment(viewModel)
@@ -62,5 +81,12 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
                 .navigation()
         }
 
+        binding.btnDialog.setOnClickListener {
+            commonDialog.show()
+        }
+
+        binding.btnPicture.setOnClickListener {
+            pictureDialog.show()
+        }
     }
 }

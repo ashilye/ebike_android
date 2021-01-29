@@ -6,4 +6,6 @@
     <string name="common_back">返回</string>
     <string name="common_search">搜索</string>
 
+    <string name="common_tip_warm">温馨提示</string>
+
 </resources>

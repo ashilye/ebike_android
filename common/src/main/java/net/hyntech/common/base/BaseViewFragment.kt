@@ -42,8 +42,6 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
 
     open fun hasUsedStateView(): Boolean = false
 
-
-
     inline fun <reified VM : ViewModel> viewModels(): Lazy<VM> {
         return lazy {
             ViewModelProvider(requireActivity()).get(VM::class.java)
@@ -58,7 +56,7 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
         this.binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         return if(hasUsedStateView()){
             multiState = binding.root.let {rootView ->
-                rootView.findViewById<ViewGroup>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
+                rootView.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
                     override fun onRetryEvent(container: MultiStateContainer?) {
                         onClickProxy {
                             onStateRetry(container)
@@ -72,8 +70,8 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
                     }
                 })
             }
-//            multiState?:binding.root
-            if(binding.root.findViewById<ViewGroup>(R.id.common_container) == null){
+        //    multiState?:binding.root
+            if(binding.root.findViewById<View>(R.id.common_container) == null){
                 multiState!!
             }else{
                 binding.root

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginBottom="@dimen/common_padding"
+    tools:ignore="ResourceName">
+
+    <Button
+        android:id="@+id/btn_camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_radius_top"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="拍照" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/common_color_line" />
+
+    <Button
+        android:id="@+id/btn_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_radius_bottom"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="相册" />
+
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:background="@drawable/selector_radius"
+        android:text="取消" />
+</LinearLayout>
