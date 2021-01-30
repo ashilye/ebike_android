@@ -49,5 +49,18 @@
             android:id="@+id/iv_picture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+
+        <net.hyntech.common.widget.view.ClearEditText
+            android:id="@+id/et_input"
+            style="@style/common_style_account_input"
+            android:background="@drawable/layer_bottom_line"
+            android:hint="请输入" />
+
+        <Button
+            android:id="@+id/btn_regex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="校验" />
     </LinearLayout>
 </layout>

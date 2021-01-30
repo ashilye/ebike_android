@@ -29,6 +29,7 @@ import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.ext.loadImage
 import net.hyntech.common.model.entity.AppUpdateEntity
 import net.hyntech.common.provider.ARouterConstants
+import net.hyntech.common.utils.RegexUtils
 import net.hyntech.common.widget.dialog.CommonDialog
 import net.hyntech.common.widget.dialog.LiveDialog
 import net.hyntech.common.widget.dialog.PictureOptionDialog
@@ -198,6 +199,34 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
         binding.btnUpdate.setOnClickListener {
             val data = AppUpdateEntity("type","version",100,"https://www.hyntech.net/appdownload/download/app-release-police-1.0.8-8.apk","content","time")
             showUpdateDialog(data)
+        }
+
+        binding.btnRegex.setOnClickListener {
+            val input = binding.etInput.text.toString().trim()
+//            if(!RegexUtils.isPhone(input)){
+//                showToast("手机号不正确")
+//                return@setOnClickListener
+//            }
+//            showToast("手机号")
+//            if(RegexUtils.isEmail(input)){
+//                showToast("邮箱")
+//                return@setOnClickListener
+//            }
+            if(!RegexUtils.isIDCard(input)){
+                showToast("不是身份证")
+                return@setOnClickListener
+            }
+            showToast("身份证")
+
+//            if(RegexUtils.isValidAccount(input)){
+//                showToast("账号")
+//                return@setOnClickListener
+//            }
+//            if(RegexUtils.isValidPassword(input)){
+//                showToast("密码")
+//                return@setOnClickListener
+//            }
+
         }
     }
 
