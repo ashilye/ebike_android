@@ -20,6 +20,7 @@ import com.xuexiang.xupdate._XUpdate
 import com.xuexiang.xupdate.service.OnFileDownloadListener
 import net.hyntech.baselib.app.config.AppActivityManager
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.baselib.utils.PermissionUtil
 import net.hyntech.baselib.utils.RequestPermission
 import net.hyntech.common.app.global.Constants
@@ -49,15 +50,20 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
     private val pictureDialog by lazy {
         PictureOptionDialog(requireActivity(),object :PictureOptionDialog.OnClickListener{
-            override fun onCameraClick() {
-                openCamer()
+            override fun onCameraClick(type: Int) {
+                //打开相机
+//                openCamer(type)
+                applyPermissions(type)
             }
 
-            override fun onPhotoClick() {
-                openPhoto()
-            } }) }
+            override fun onPhotoClick(type: Int) {
+                //打开相册
+//                openPhoto(type)
+                applyPermissions(type)
+            }
+        }) }
 
-    private fun openCamer() {
+    private fun openCamer(type:Int) {
         showToast("访问相机")
         PictureSelector.create(this)
             .openCamera(PictureMimeType.ofImage())
@@ -79,7 +85,7 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
                         //上传图片
                         if(!TextUtils.isEmpty(compressPath)){
                             //uploadImage(compressPath)
-                            showToast("图片大小：${FileUtils.getSize(compressPath)}")
+                            showToast("type->${type}-图片大小：${FileUtils.getSize(compressPath)}")
                             binding.ivPicture.loadImage(compressPath)
                         }else{
                             showToast("拍照出错,请重新拍照！")
@@ -95,7 +101,7 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
             })
     }
 
-    private fun openPhoto() {
+    private fun openPhoto(type:Int) {
         showToast("访问相册")
         PictureSelector.create(this)
             .openGallery(PictureMimeType.ofImage())
@@ -119,7 +125,7 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
                         }
                         //上传图片
                         if(!TextUtils.isEmpty(compressPath)){
-                            showToast("图片大小：${FileUtils.getSize(compressPath)}")
+                            showToast("type->${type}-图片大小：${FileUtils.getSize(compressPath)}")
                             binding.ivPicture.loadImage(compressPath)
                         }else{
                             showToast("选择照片出错,请重新选择！")
@@ -189,27 +195,29 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
             pictureDialog.show()
         }
 
-        binding.btnPermissions.setOnClickListener {
-            PermissionUtil.applyCamera(object : RequestPermission {
-                override fun onRequestPermissionSuccess() {
-                    //showToast("权限通过")
-                    showPermissionsDialog()
-                }
-
-                override fun onRequestPermissionFailure(permissions: List<String>) {
-                    showPermissionsDialog()
-                }
-
-                override fun onRequestPermissionFailureWithAskNeverAgain(permissions: List<String>) {
-                    showPermissionsDialog()
-                }
-            }, rxPermissions)
-        }
-
         binding.btnUpdate.setOnClickListener {
             val data = AppUpdateEntity("type","version",100,"https://www.hyntech.net/appdownload/download/app-release-police-1.0.8-8.apk","content","time")
             showUpdateDialog(data)
         }
+    }
+
+    private fun applyPermissions(type: Int){
+        PermissionUtil.applyCamera(object : RequestPermission {
+            override fun onRequestPermissionSuccess() {
+                when(type){
+                    PictureOptionDialog.TYPE_CAMERA ->{openCamer(type)}
+                    PictureOptionDialog.TYPE_PHOTO ->{openPhoto(type)}
+                }
+            }
+
+            override fun onRequestPermissionFailure(permissions: List<String>) {
+                showPermissionsDialog()
+            }
+
+            override fun onRequestPermissionFailureWithAskNeverAgain(permissions: List<String>) {
+                showPermissionsDialog()
+            }
+        }, rxPermissions)
     }
 
     private var updateDialog: UpdateDialog? = null
