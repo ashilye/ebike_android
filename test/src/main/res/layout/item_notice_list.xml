@@ -14,7 +14,7 @@
     tools:ignore="ResourceName">
 
     <LinearLayout
-        android:id="@+id/item_root"
+        android:id="@+id/common_item_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

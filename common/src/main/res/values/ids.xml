@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="common_container" type="id"/>
-    <item name="common_item" type="id"/>
+    <item name="common_item_root" type="id"/>
     <item name="common_refreshLayout" type="id"/>
     <item name="common_recyclerView" type="id"/>
 </resources>
