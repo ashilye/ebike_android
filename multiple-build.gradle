@@ -64,17 +64,17 @@ android {
     buildTypes {
 
         debug {
-//            debuggable true
-//            minifyEnabled false
-//            signingConfig signingConfigs.debug
+            debuggable true
+            minifyEnabled false
+            signingConfig signingConfigs.debug
 
-            debuggable false
-            //移除无用的资源文件
-            shrinkResources true
-            zipAlignEnabled true
-            minifyEnabled true
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            debuggable false
+//            //移除无用的资源文件
+//            shrinkResources true
+//            zipAlignEnabled true
+//            minifyEnabled true
+//            signingConfig signingConfigs.release
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {

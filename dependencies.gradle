@@ -82,19 +82,16 @@ ext {
             xUpdate                    : "com.github.xuexiangjys:XUpdate:2.0.7",
             okhttputils                : "com.zhy:okhttputils:2.6.2",
             //状态栏
-//            statusBar                  : "com.github.liangjingkanji:StatusBar:1.1.0",
             ultimatebarx               : "com.zackratos.ultimatebarx:ultimatebarx:0.4.2",
 
-            // 基础依赖包，必须要依赖
-//            immersionbar               : "com.gyf.immersionbar:immersionbar:3.0.0",
-            // fragment快速实现（可选）
-//            immersionbarComponents     : "com.gyf.immersionbar:immersionbar-components:3.0.0",
-            // kotlin扩展（可选）
-//            immersionbarKTX            : "com.gyf.immersionbar:immersionbar-ktx:3.0.0",
-
+            // 轮播图
             banner                     : "com.youth.banner:banner:2.1.0",
+            //popup窗
             basePopup                  : "com.github.razerdp:BasePopup:2.2.10",
+            // 大图预览
             photoView                  : "com.github.chrisbanes:PhotoView:2.3.0",
+            // 图片选择器
+            pictureSelector            : "com.github.LuckSiege.PictureSelector:picture_library:v2.6.0",
 
             //内存泄漏
             leakcanary                 : "com.squareup.leakcanary:leakcanary-android:2.5",
