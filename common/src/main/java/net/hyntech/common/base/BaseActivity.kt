@@ -137,11 +137,19 @@ abstract class BaseActivity : B() {
             .applyStatusBar()
     }
 
+    /**
+     * 设置title
+     * @param txt 标题
+     */
     inline fun <reified T : BaseActivity> setTitle(txt: String): T {
         tv_title_center?.text = txt
         return this as T
     }
 
+    /**
+     * 设置左文本
+     * @param txt 文本内容
+     */
     inline fun <reified T : BaseActivity> setLeftTxt(txt: String): T {
         ll_title_left?.toVisible()
         tv_title_left?.apply {
@@ -151,6 +159,10 @@ abstract class BaseActivity : B() {
         return this as T
     }
 
+    /**
+     * 设置右文本
+     * @param txt 文本内容
+     */
     inline fun <reified T : BaseActivity> setRightTxt(txt: String): T {
         ll_title_right?.toVisible()
         tv_title_right?.apply {
@@ -160,6 +172,10 @@ abstract class BaseActivity : B() {
         return this as T
     }
 
+    /**
+     * 设置左按钮点击事件
+     * @param m 点击事件
+     */
     inline fun <reified T : BaseActivity> onBack(crossinline m: () -> Unit): T {
         ll_title_left?.apply {
             this.toVisible()
@@ -172,6 +188,10 @@ abstract class BaseActivity : B() {
         return this as T
     }
 
+    /**
+     * 设置右按钮点击事件
+     * @param m 点击事件
+     */
     inline fun <reified T : BaseActivity> onSide(crossinline m: () -> Unit): T {
         ll_title_right?.apply {
             this.toVisible()
@@ -184,6 +204,11 @@ abstract class BaseActivity : B() {
         return this as T
     }
 
+    /**
+     * 是否显示左按钮
+     * @param hasUse true 显示,false 隐藏
+     * 默认显示
+     */
     inline fun <reified T : BaseActivity> onUseBack(hasUse:Boolean): T {
         ll_title_left?.let {
             if(hasUse){
@@ -195,6 +220,11 @@ abstract class BaseActivity : B() {
         return this as T
     }
 
+    /**
+     * 是否显示右按钮
+     * @param hasUse true 显示,false 隐藏
+     * 默认隐藏
+     */
     inline fun <reified T : BaseActivity> onUseSide(hasUse:Boolean): T {
         ll_title_left?.let {
             if(hasUse){
