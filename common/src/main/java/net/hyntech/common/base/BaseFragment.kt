@@ -5,6 +5,7 @@ import kotlinx.android.synthetic.main.include_title.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import net.hyntech.baselib.utils.UIUtils
+import net.hyntech.common.ext.toGone
 import net.hyntech.common.ext.toVisible
 import net.hyntech.common.utils.ToastUtils
 import net.hyntech.common.widget.dialog.LoadingDialog
@@ -92,6 +93,28 @@ abstract class BaseFragment : B() {
                 if (!UIUtils.isFastDoubleClick()) {
                     m()
                 }
+            }
+        }
+        return this as T
+    }
+
+    inline fun <reified T : BaseFragment> onUseBack(hasUse:Boolean): T {
+        ll_title_left?.let {
+            if(hasUse){
+                it.toVisible()
+            }else{
+                it.toGone()
+            }
+        }
+        return this as T
+    }
+
+    inline fun <reified T : BaseFragment> onUseSide(hasUse:Boolean): T {
+        ll_title_left?.let {
+            if(hasUse){
+                it.toVisible()
+            }else{
+                it.toGone()
             }
         }
         return this as T

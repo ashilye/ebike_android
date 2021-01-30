@@ -157,7 +157,7 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
     override fun initData(savedInstanceState: Bundle?) {
 
-        setTitle<MineFragment>("我的")
+        setTitle<MineFragment>("我的").onUseBack<MineFragment>(false)
 
         viewModel.defUI.showDialog.observe(this, Observer {
             showLoading()
