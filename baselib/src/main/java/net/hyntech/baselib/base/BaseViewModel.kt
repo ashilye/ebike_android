@@ -154,7 +154,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
         } catch (e: Exception) {
             e.fillInStackTrace()
             LogUtils.logGGQ("异常--e->${e.message}")
-            defUI.toastEvent.postValue("数据异常,请稍候再试！")
+            defUI.toastEvent.postValue("服务器异常,请稍候再试！")
             defUI.dismissDialog.call()
         }
     }
