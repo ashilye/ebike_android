@@ -15,6 +15,7 @@ import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
 import kotlinx.coroutines.*
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.base.ViewModelLazy
 import net.hyntech.common.R
 import net.hyntech.common.widget.state.showEmpty
 import net.hyntech.common.widget.state.showError
@@ -47,6 +48,15 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
             ViewModelProvider(requireActivity()).get(VM::class.java)
         }
     }
+
+//    inline fun <reified VM : ViewModel> viewModels(
+//        noinline factoryProducer: (() -> ViewModelProvider.Factory)? = null
+//    ): Lazy<VM> {
+//        val factoryPromise = factoryProducer ?: {
+//            defaultViewModelProviderFactory
+//        }
+//        return ViewModelLazy(VM::class, { viewModelStore }, factoryPromise)
+//    }
 
     override fun setContentLayout(
         inflater: LayoutInflater,

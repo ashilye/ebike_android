@@ -71,7 +71,9 @@
             android:name=".ui.activity.PreviewActivity"
             android:screenOrientation="portrait" />
 
-
+        <activity android:name=".ui.activity.QRCodeActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/CaptureTheme" />
     </application>
 
 </manifest>

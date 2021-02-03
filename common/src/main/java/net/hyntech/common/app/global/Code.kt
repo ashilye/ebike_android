@@ -7,7 +7,8 @@ class Code {
     }
 
     object RequestCode {
-        const val CODE_ORG = 500
+        const val REQUEST_CODE_QRCODE = 200
+
     }
 
 }

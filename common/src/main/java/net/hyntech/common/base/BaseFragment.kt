@@ -1,5 +1,7 @@
 package net.hyntech.common.base
 
+import android.app.Activity
+import android.content.Intent
 import com.zackratos.ultimatebarx.library.UltimateBarX
 import kotlinx.android.synthetic.main.include_title.*
 import kotlinx.coroutines.delay
@@ -122,5 +124,18 @@ abstract class BaseFragment : B() {
 
     //------------end------------------
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            onEventResult(requestCode, data)
+        }
+    }
+
+    /***
+     * 页面返回结果回调封装
+     *  子类重写
+     */
+    open fun onEventResult(requestCode: Int, data: Intent?) {}
 
 }

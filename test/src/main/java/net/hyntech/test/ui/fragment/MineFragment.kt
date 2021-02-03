@@ -1,5 +1,6 @@
 package net.hyntech.test.ui.fragment
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
@@ -9,6 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.PathUtils
+import com.king.zxing.CameraScan
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
@@ -23,12 +25,14 @@ import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.baselib.utils.PermissionUtil
 import net.hyntech.baselib.utils.RequestPermission
+import net.hyntech.common.app.global.Code
 import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.ext.loadImage
 import net.hyntech.common.model.entity.AppUpdateEntity
 import net.hyntech.common.provider.ARouterConstants
+import net.hyntech.common.ui.activity.QRCodeActivity
 import net.hyntech.common.utils.RegexUtils
 import net.hyntech.common.widget.dialog.CommonDialog
 import net.hyntech.common.widget.dialog.LiveDialog
@@ -228,7 +232,29 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 //            }
 
         }
+
+
+        binding.btnQrcode.setOnClickListener {
+            startActivityForResult(Intent(requireActivity(),QRCodeActivity::class.java),Code.RequestCode.REQUEST_CODE_QRCODE)
+        }
     }
+
+
+    override fun onEventResult(requestCode: Int, data: Intent?) {
+        super.onEventResult(requestCode, data)
+        when(requestCode){
+            Code.RequestCode.REQUEST_CODE_QRCODE ->{
+                data?.let {
+                    val content = it.getStringExtra(CameraScan.SCAN_RESULT)
+                    if(!TextUtils.isEmpty(content)){
+                        showToast("扫描结果：${content}")
+                    }
+                }
+            }
+        }
+    }
+
+
 
     private fun applyPermissions(type: Int){
         PermissionUtil.applyCamera(object : RequestPermission {
@@ -346,4 +372,5 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 //            this.setContentText("相机权限")
 //        }
 //    }
+
 }

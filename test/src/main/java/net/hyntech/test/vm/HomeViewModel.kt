@@ -1,6 +1,7 @@
 package net.hyntech.test.vm
 
 import androidx.databinding.ObservableField
+import androidx.lifecycle.MutableLiveData
 import net.hyntech.baselib.app.manager.SingleLiveEvent
 import net.hyntech.baselib.base.BaseViewModel
 

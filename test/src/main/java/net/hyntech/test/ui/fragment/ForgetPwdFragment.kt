@@ -47,6 +47,8 @@ class ForgetPwdFragment : BaseViewFragment<FragmentForgetPwdBinding, AccountView
         viewModel.defUI.toastEvent.observe(this, Observer {
             showToast(it)
         })
+
+
     }
 
 }
