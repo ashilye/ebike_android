@@ -22,6 +22,7 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
     private var previewView: PreviewView? = null
     private var viewfinderView: ViewfinderView? = null
     private var ivFlashlight: View? = null
+    private var ivPicture: View? = null
 
     private var mCameraScan: CameraScan? = null
 
@@ -33,9 +34,6 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
         val viewfinderViewId: Int = getViewfinderViewId()
         if (viewfinderViewId != 0) {
             viewfinderView = findViewById(viewfinderViewId)
-            viewfinderView.apply {
-
-            }
         }
         val ivFlashlightId: Int = getFlashlightId()
         if (ivFlashlightId != 0) {
@@ -44,16 +42,26 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
                 ivFlashlight?.setOnClickListener { v: View? -> onClickFlashlight() }
             }
         }
+
+        val ivPictureId: Int = getPictureId()
+        if (ivPictureId != 0) {
+            ivPicture = findViewById(ivPictureId)
+            if (ivPicture != null) {
+                ivPicture?.setOnClickListener { v: View? -> onClickFlashlight() }
+            }
+        }
+
         initCameraScan()
         startCamera()
 
         val decodeConfig = DecodeConfig()
         decodeConfig.setHints(DecodeFormatManager.DEFAULT_HINTS)//如果只有识别二维码的需求，这样设置效率会更高，不设置默认为DecodeFormatManager.DEFAULT_HINTS)
         decodeConfig.setFullAreaScan(true)//设置是否全区域识别，默认false)
+        //增强对条形码的识别
+        decodeConfig.setSupportVerticalCode(true);
         decodeConfig.setAreaRectRatio(0.8f)//设置识别区域比例，默认0.8，设置的比例最终会在预览区域裁剪基于此比例的一个矩形进行扫码识别
         decodeConfig.setAreaRectVerticalOffset(0) //设置识别区域垂直方向偏移量，默认为0，为0表示居中，可以为负数
         decodeConfig.setAreaRectHorizontalOffset(0) //设置识别区域水平方向偏移量，默认为0，为0表示居中，可以为负数
-
         //在启动预览之前，设置分析器，只识别二维码
         getCameraScan()
             ?.setVibrate(true)//设置是否震动，默认为false
@@ -67,6 +75,16 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
         toggleTorchState()
     }
 
+    protected fun onClickPicture(){
+        openPicture()
+    }
+
+    /**
+     * 选择相册扫码
+     */
+    private fun openPicture() {
+
+    }
 
     /**
      * 切换闪光灯状态（开启/关闭）
@@ -186,6 +204,9 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
         return R.id.ivFlashlight
     }
 
+    fun getPictureId(): Int {
+        return R.id.ivPicture
+    }
     /**
      * Get {@link CameraScan}
      * @return {@link #mCameraScan}
