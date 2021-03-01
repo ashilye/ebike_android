@@ -13,6 +13,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.cancel
 
+/**
+ * BaseDialogFragment
+ */
 abstract class BaseDialogFragment <VB : ViewDataBinding> : DialogFragment(),
     CoroutineScope by MainScope() {
 

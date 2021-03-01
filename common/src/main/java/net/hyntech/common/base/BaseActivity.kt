@@ -177,7 +177,7 @@ abstract class BaseActivity : B() {
      * @param m 点击事件
      */
     inline fun <reified T : BaseActivity> onBack(crossinline m: () -> Unit): T {
-        ll_title_left?.apply {
+        ibtn_title_left?.apply {
             this.toVisible()
             this.setOnClickListener {
                 if (!UIUtils.isFastDoubleClick()) {
@@ -193,7 +193,7 @@ abstract class BaseActivity : B() {
      * @param m 点击事件
      */
     inline fun <reified T : BaseActivity> onSide(crossinline m: () -> Unit): T {
-        ll_title_right?.apply {
+        ibtn_title_right?.apply {
             this.toVisible()
             this.setOnClickListener {
                 if (!UIUtils.isFastDoubleClick()) {
