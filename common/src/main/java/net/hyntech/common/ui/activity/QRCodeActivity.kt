@@ -47,7 +47,7 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
         if (ivPictureId != 0) {
             ivPicture = findViewById(ivPictureId)
             if (ivPicture != null) {
-                ivPicture?.setOnClickListener { v: View? -> onClickFlashlight() }
+                ivPicture?.setOnClickListener { v: View? -> onClickPicture() }
             }
         }
 
@@ -83,7 +83,7 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
      * 选择相册扫码
      */
     private fun openPicture() {
-
+        LogUtils.logGGQ("相册扫码...")
     }
 
     /**
