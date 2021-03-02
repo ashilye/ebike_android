@@ -77,7 +77,8 @@ abstract class BaseFragment : B() {
     }
 
     inline fun <reified T : BaseFragment> onBack(crossinline m: () -> Unit): T {
-        ll_title_left?.apply {
+        ll_title_left?.toVisible()
+        ibtn_title_left?.apply {
             this.toVisible()
             this.setOnClickListener {
                 if (!UIUtils.isFastDoubleClick()) {
@@ -89,7 +90,8 @@ abstract class BaseFragment : B() {
     }
 
     inline fun <reified T : BaseFragment> onSide(crossinline m: () -> Unit): T {
-        ll_title_right?.apply {
+        ll_title_right.toVisible()
+        ibtn_title_right?.apply {
             this.toVisible()
             this.setOnClickListener {
                 if (!UIUtils.isFastDoubleClick()) {
@@ -100,8 +102,30 @@ abstract class BaseFragment : B() {
         return this as T
     }
 
+    inline fun <reified T : BaseFragment> onLeftText(crossinline m: () -> Unit): T {
+        tv_title_left?.apply {
+            this.setOnClickListener {
+                if (!UIUtils.isFastDoubleClick()) {
+                    m()
+                }
+            }
+        }
+        return this as T
+    }
+
+    inline fun <reified T : BaseFragment> onRightText(crossinline m: () -> Unit): T {
+        tv_title_right?.apply {
+            this.setOnClickListener {
+                if (!UIUtils.isFastDoubleClick()) {
+                    m()
+                }
+            }
+        }
+        return this as T
+    }
+
     inline fun <reified T : BaseFragment> onUseBack(hasUse:Boolean): T {
-        ll_title_left?.let {
+        ibtn_title_left?.let {
             if(hasUse){
                 it.toVisible()
             }else{
@@ -112,7 +136,7 @@ abstract class BaseFragment : B() {
     }
 
     inline fun <reified T : BaseFragment> onUseSide(hasUse:Boolean): T {
-        ll_title_left?.let {
+        ibtn_title_right?.let {
             if(hasUse){
                 it.toVisible()
             }else{

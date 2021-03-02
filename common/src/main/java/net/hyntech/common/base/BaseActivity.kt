@@ -177,6 +177,7 @@ abstract class BaseActivity : B() {
      * @param m 点击事件
      */
     inline fun <reified T : BaseActivity> onBack(crossinline m: () -> Unit): T {
+        ll_title_left?.toVisible()
         ibtn_title_left?.apply {
             this.toVisible()
             this.setOnClickListener {
@@ -193,8 +194,39 @@ abstract class BaseActivity : B() {
      * @param m 点击事件
      */
     inline fun <reified T : BaseActivity> onSide(crossinline m: () -> Unit): T {
+        ll_title_right?.toVisible()
         ibtn_title_right?.apply {
             this.toVisible()
+            this.setOnClickListener {
+                if (!UIUtils.isFastDoubleClick()) {
+                    m()
+                }
+            }
+        }
+        return this as T
+    }
+
+    /**
+     * 设置左文本点击事件
+     * @param m 点击事件
+     */
+    inline fun <reified T : BaseActivity> onLeftText(crossinline m: () -> Unit): T {
+        tv_title_left?.apply {
+            this.setOnClickListener {
+                if (!UIUtils.isFastDoubleClick()) {
+                    m()
+                }
+            }
+        }
+        return this as T
+    }
+
+    /**
+     * 设置右文本点击事件
+     * @param m 点击事件
+     */
+    inline fun <reified T : BaseActivity> onRightText(crossinline m: () -> Unit): T {
+        tv_title_right?.apply {
             this.setOnClickListener {
                 if (!UIUtils.isFastDoubleClick()) {
                     m()
@@ -210,7 +242,7 @@ abstract class BaseActivity : B() {
      * 默认显示
      */
     inline fun <reified T : BaseActivity> onUseBack(hasUse:Boolean): T {
-        ll_title_left?.let {
+        ibtn_title_left?.let {
             if(hasUse){
                 it.toVisible()
             }else{
@@ -226,7 +258,7 @@ abstract class BaseActivity : B() {
      * 默认隐藏
      */
     inline fun <reified T : BaseActivity> onUseSide(hasUse:Boolean): T {
-        ll_title_left?.let {
+        ibtn_title_right?.let {
             if(hasUse){
                 it.toVisible()
             }else{

@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:paddingStart="@dimen/common_padding"
-                android:paddingEnd="@dimen/common_padding"
+                android:paddingEnd="@dimen/common_gap"
                 android:layout_gravity="center"
                 android:background="@null"
                 android:contentDescription="@string/common_back"
@@ -62,24 +62,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/tv_title_right"
+                style="@style/common_style_title_txt"
+                android:visibility="gone"
+                tools:text="@string/common_search" />
+
             <ImageButton
                 android:id="@+id/ibtn_title_right"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:paddingStart="@dimen/common_padding"
+                android:paddingStart="@dimen/common_gap"
                 android:paddingEnd="@dimen/common_padding"
                 android:contentDescription="按钮"
                 android:background="@null"
                 android:src="@drawable/selector_search"
                 android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tv_title_right"
-                style="@style/common_style_title_txt"
-                android:visibility="gone"
-                android:paddingEnd="@dimen/common_padding"
-                tools:text="@string/common_search" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

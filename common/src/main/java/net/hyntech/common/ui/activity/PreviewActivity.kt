@@ -38,7 +38,8 @@ class PreviewActivity : BaseActivity() {
     override fun getLayoutId(): Int = R.layout.activity_preview
 
     override fun initData(savedInstanceState: Bundle?) {
-        setTitle<PreviewActivity>("预览大图").onBack<PreviewActivity> { onFinish() }
+        setTitle<PreviewActivity>("预览大图")
+            .onBack<PreviewActivity> { onFinish() }
 
         vp = this.findViewById(R.id.vp)
         tvIndex = this.findViewById(R.id.tv_index)
