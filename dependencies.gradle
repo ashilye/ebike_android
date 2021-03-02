@@ -16,7 +16,8 @@ ext {
             viewpager2       : "androidx.viewpager2:viewpager2:1.0.0",
             utilcodex        : "com.blankj:utilcodex:1.30.5", //工具库
             autosize         : "me.jessyan:autosize:1.2.1", // 适配
-            anko             : "org.jetbrains.anko:anko-commons:0.10.8",
+            anko             : "org.jetbrains.anko:anko-common",
+            ankoSDK          : "org.jetbrains.anko:anko-sdk15:0.8.2",
     ]
 
     deps = [

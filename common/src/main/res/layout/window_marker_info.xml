@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/info_window"
+    tools:ignore="ResourceName">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_radius"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_addr"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="当前位置" />
+
+        <TextView
+            android:id="@+id/tv_imei"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="当前位置" />
+
+        <TextView
+            android:id="@+id/tv_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="地址" />
+
+        <TextView
+            android:id="@+id/tv_course"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="方向" />
+
+        <TextView
+            android:id="@+id/tv_accStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="时间" />
+
+        <TextView
+            android:id="@+id/tv_positionType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="时间" />
+
+        <TextView
+            android:id="@+id/tv_gpsTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_black"
+            android:textSize="12sp"
+            tools:text="时间" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/layer_triangle_down" />
+</LinearLayout>

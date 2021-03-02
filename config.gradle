@@ -23,7 +23,9 @@ ext {
 
 
             // 测试 模块
-            applicationIdTest    : "net.hyntech.test",
+            applicationIdTest    : "net.hyntech.electricvehiclepolice",
+
+//            applicationIdTest    : "net.hyntech.test",
             versionCodeTest      : 10,
             versionNameTest      : "1.1.0"
     ]
