@@ -15,7 +15,6 @@ import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
 import kotlinx.coroutines.*
 import net.hyntech.baselib.base.BaseViewModel
-import net.hyntech.baselib.base.ViewModelLazy
 import net.hyntech.common.R
 import net.hyntech.common.widget.state.showEmpty
 import net.hyntech.common.widget.state.showError

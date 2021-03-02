@@ -17,6 +17,8 @@
     <color name="common_color_toast">#666666</color>
     <color name="common_color_loading">#aeaeae</color>
 
+    <color name="common_color_refresh">#AAAAAA</color>
+
     <color name="common_light_pressed">#E0E0E0</color>
     <color name="common_light_normal">#f9f9f9</color>
 

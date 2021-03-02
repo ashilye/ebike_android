@@ -30,12 +30,12 @@ abstract class CommonApp:BaseApp() {
 
     init {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
-            layout.setPrimaryColorsId(R.color.common_white, R.color.common_colorTheme)
-            ClassicsHeader(context)
+            layout.setPrimaryColorsId(R.color.common_white, R.color.common_color_refresh)
+            ClassicsHeader(context).setDrawableArrowSize(14f).setDrawableProgressSize(14f).setTextSizeTitle(14f).setTextSizeTime(10f)
         }
 
-        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> ClassicsFooter(context).setDrawableSize(18f).setAccentColor(
-            UIUtils.getColor(R.color.common_colorTheme)) }
+        SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout -> ClassicsFooter(context).setDrawableSize(14f).setTextSizeTitle(14f).setAccentColor(
+            UIUtils.getColor(R.color.common_color_refresh)) }
     }
 
     override fun initGlobalSDK(app: Application) {

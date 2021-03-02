@@ -27,7 +27,7 @@
         android:paddingRight="30dp"
         android:paddingTop="24dp"
         android:paddingBottom="24dp"
-        style="@style/AVLoadingIndicatorView.Small"
+        style="@style/common_avloading"
         app:indicatorName="LineSpinFadeLoaderIndicator"
         app:indicatorColor="@color/common_color_loading" />
 
