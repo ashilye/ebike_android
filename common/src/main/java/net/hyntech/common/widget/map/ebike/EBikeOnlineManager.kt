@@ -11,7 +11,6 @@ import com.baidu.mapapi.search.geocode.*
 import com.blankj.utilcode.util.TimeUtils
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.common.R
-import net.hyntech.common.widget.map.BiaduUtils
 import net.hyntech.common.widget.map.GeoCoderUtils
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread

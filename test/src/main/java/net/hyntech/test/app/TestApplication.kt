@@ -1,10 +1,9 @@
 package net.hyntech.test.app
 
-import android.app.Application
 import androidx.lifecycle.ViewModelStore
 import net.hyntech.common.app.CommonApp
 
-class TestApplication : CommonApp() {
+class TestApplication: CommonApp() {
 
     companion object {
         @JvmStatic
@@ -21,11 +20,4 @@ class TestApplication : CommonApp() {
 
 
     override fun getViewModelStore(): ViewModelStore = ViewModelStore()
-
-
-
-
-    override fun initSDK(app: Application) {
-
-    }
 }

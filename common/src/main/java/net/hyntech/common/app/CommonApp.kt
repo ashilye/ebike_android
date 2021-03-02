@@ -18,7 +18,7 @@ import net.hyntech.common.R
 
 import net.hyntech.common.widget.update.OKHttpUpdateHttpService
 
-abstract class CommonApp:BaseApp() {
+abstract class CommonApp: BaseApp() {
 
     companion object {
         @JvmStatic

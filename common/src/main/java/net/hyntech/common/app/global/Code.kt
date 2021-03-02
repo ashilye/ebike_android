@@ -7,6 +7,8 @@ class Code {
     }
 
     object RequestCode {
+        const val REQUEST_CODE_BAIDUMAP = 101
+
         const val REQUEST_CODE_QRCODE = 200
 
     }

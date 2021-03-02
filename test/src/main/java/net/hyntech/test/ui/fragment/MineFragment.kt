@@ -237,6 +237,10 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
         binding.btnQrcode.setOnClickListener {
             startActivityForResult(Intent(requireActivity(),QRCodeActivity::class.java),Code.RequestCode.REQUEST_CODE_QRCODE)
         }
+
+        binding.btnBdmap.setOnClickListener {
+            ARouter.getInstance().build(ARouterConstants.BAIDU_MAP_PAGE).navigation(requireActivity(),Code.RequestCode.REQUEST_CODE_BAIDUMAP)
+        }
     }
 
 
