@@ -11,6 +11,8 @@
     <color name="common_gray">#AAAAAA</color>
     <color name="common_toolbar">#38B7FE</color>
 
+    <color name="common_text_gray">#666666</color>
+
     <color name="common_default_background">#FFFFFF</color>
 
     <color name="common_color_line">#E0E0E0</color>

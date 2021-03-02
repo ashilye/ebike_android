@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_item_event"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+        <ImageView
+            android:id="@+id/iv_ding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_poi_ding" />
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="start"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="title"
+                android:paddingTop="8dp"
+                android:paddingBottom="1dp"
+                android:textColor="@color/common_black"
+                android:textSize="@dimen/common_font_text" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingTop="1dp"
+                android:paddingBottom="8dp"
+                tools:text="contentcontentcontentcontentcontentcontentcontentcontent"
+                android:textColor="@color/common_text_gray"
+                android:textSize="@dimen/common_font_text" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/iv_point_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_poi_default" />
+    </LinearLayout>
+
+
+    <View
+        style="@style/common_style_line"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp" />
+
+</LinearLayout>
