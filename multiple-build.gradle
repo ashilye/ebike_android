@@ -53,7 +53,6 @@ android {
         }
 
         release {
-
             storeFile file(keystoreProperties.RELEASE_STOREFILE)
             storePassword keystoreProperties.RELEASE_STORE_PASSWORD
             keyAlias keystoreProperties.RELEASE_KEY_ALIAS
@@ -95,9 +94,9 @@ android {
                 def date = new Date()
                 def formattedDate = date.format('yyyyMMdd')
                 if (variant.buildType.name.equals('release')) {
-                    fileName = "eBike_V${variant.mergedFlavor.versionName}_release_${formattedDate}.apk"
+                    fileName = "eBike_${android.resourcePrefix}_V${variant.mergedFlavor.versionName}_release_${formattedDate}.apk"
                 } else if (variant.buildType.name.equals('debug')) {
-                    fileName = "eBike_V${variant.mergedFlavor.versionName}_debug_${formattedDate}.apk"
+                    fileName = "eBike_${android.resourcePrefix}_V${variant.mergedFlavor.versionName}_debug_${formattedDate}.apk"
                 }
                 outputFileName = fileName
             }
