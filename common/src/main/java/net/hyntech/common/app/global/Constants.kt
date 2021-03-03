@@ -38,13 +38,11 @@ class Constants {
         const val EXTRA_TAG = "tag"
         const val EXTRA_LIST = "list"
         const val EXTRA_INDEX = "index"
-        const val EXTRA_PHONE = "phone"
-        const val EXTRA_IDCARD = "idcard"
-        const val EXTRA_TYPE = "type"
-        const val EXTRA_PRICE = "price"
         const val EXTRA_ID = "id"
         const val EXTRA_LAT = "lat"
         const val EXTRA_LNG = "lng"
+        const val EXTRA_ADDRESS = "address"
+        const val EXTRA_CONTENT = "content"
 
     }
 

@@ -1,6 +1,7 @@
 package net.hyntech.common.ui.activity
 
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -22,6 +23,7 @@ import com.baidu.mapapi.search.geocode.ReverseGeoCodeOption
 import com.baidu.mapapi.search.poi.*
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.common.R
+import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseAdapter
 import net.hyntech.common.ext.toVisible
@@ -44,11 +46,21 @@ class BaiduMapActivity: BaseActivity(), SensorEventListener, OnGetPoiSearchResul
     private var mapView: TextureMapView? = null
     private var rvPoint: RecyclerView? = null
     private var baiduMap: BaiduMap? = null
+    private val manager by lazy { LinearLayoutManager(this) }
     private val poiAdapter: PoiResultAdapter by lazy { PoiResultAdapter(this).apply {
         this.setListener(object: BaseAdapter.OnClickListener<PoiInfo>{
             override fun onItemClick(pos: Int, item: PoiInfo?) {
-
-            } }) } }
+                if (poiAdapter.index != pos) {
+                    poiAdapter.index = pos
+                    poiAdapter.notifyDataSetChanged()
+                }
+                item?.let {
+                    val intent: Intent = Intent()
+                    intent.putExtra(Constants.BundleKey.EXTRA_ADDRESS,item.address + item.name)
+                    intent.putExtra(Constants.BundleKey.EXTRA_LAT,item.location?.latitude?.toString())
+                    intent.putExtra(Constants.BundleKey.EXTRA_LNG,item.location?.longitude?.toString())
+                    onFinishByIntent(intent)
+                } } }) } }
 
     private val myMarker by lazy { BitmapDescriptorFactory.fromResource(R.drawable.ic_my_location) }
 
@@ -122,7 +134,10 @@ class BaiduMapActivity: BaseActivity(), SensorEventListener, OnGetPoiSearchResul
                 }
             }
         }
-        rvPoint?.layoutManager = LinearLayoutManager(this)
+        rvPoint?.apply {
+            this.layoutManager = manager
+            this.adapter = poiAdapter
+        }
         initLocation()
     }
 
@@ -237,6 +252,9 @@ class BaiduMapActivity: BaseActivity(), SensorEventListener, OnGetPoiSearchResul
                 val list = result.allPoi
                 if (!list.isNullOrEmpty()) {
                     rvPoint?.toVisible()
+                    //每次获取到数据后默认选中第一条
+                    poiAdapter.index = 0
+                    manager.scrollToPosition(0)
                     poiAdapter.setData(list)
                 }
             }else if(result.error == SearchResult.ERRORNO.AMBIGUOUS_KEYWORD){

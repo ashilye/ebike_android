@@ -1,9 +1,15 @@
 package net.hyntech.test.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
+import com.king.zxing.CameraScan
 import net.hyntech.baselib.base.BaseViewModel
+import net.hyntech.baselib.utils.LogUtils
+import net.hyntech.common.app.global.Code
+import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseViewActivity
 import net.hyntech.common.common.MyFragmentStateAdapter
 import net.hyntech.test.R
@@ -83,5 +89,24 @@ class HomeActivity : BaseViewActivity<ActivityHomeBinding, HomeViewModel>() {
             showToast("再按一次退出程序")
         }
         super.onKeyBack(keyCode)
+    }
+
+    override fun onEventResult(requestCode: Int, data: Intent?) {
+        super.onEventResult(requestCode, data)
+        when(requestCode){
+            Code.RequestCode.REQUEST_CODE_BAIDUMAP ->{
+                data?.let {
+                    val address = it.getStringExtra(Constants.BundleKey.EXTRA_ADDRESS)
+                    //纬度
+                    val lat = it.getStringExtra(Constants.BundleKey.EXTRA_LAT)
+                    //经度
+                    val lng = it.getStringExtra(Constants.BundleKey.EXTRA_LNG)
+                    LogUtils.logGGQ("地址:${address}")
+                    LogUtils.logGGQ("纬度:${lat}")
+                    LogUtils.logGGQ("经度:${lng}")
+                    showToast(address)
+                }
+            }
+        }
     }
 }

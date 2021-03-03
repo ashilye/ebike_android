@@ -25,6 +25,11 @@ class PoiResultAdapter(context: Context): BaseAdapter<PoiInfo,PoiResultAdapter.V
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = context.layoutInflater.inflate(R.layout.item_map_poi, parent, false)
         val holder: PoiResultAdapter.ViewHolder = ViewHolder(view)
+        holder.itemRoot?.setOnClickListener {
+            onClickProxy {
+                l?.onItemClick(holder.adapterPosition, list.get(holder.adapterPosition))
+            }
+        }
         return holder
     }
 
@@ -38,9 +43,9 @@ class PoiResultAdapter(context: Context): BaseAdapter<PoiInfo,PoiResultAdapter.V
                 tvTitle?.text = it.name
                 tvContent?.text = it.address
                 if(pos == index){
-                    ivPointState?.background =  drawDefault
-                }else{
                     ivPointState?.background =  drawSelected
+                }else{
+                    ivPointState?.background =  drawDefault
                 }
             }
         }

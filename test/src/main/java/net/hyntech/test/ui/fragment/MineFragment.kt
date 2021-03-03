@@ -258,8 +258,6 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
         }
     }
 
-
-
     private fun applyPermissions(type: Int){
         PermissionUtil.applyCamera(object : RequestPermission {
             override fun onRequestPermissionSuccess() {
@@ -293,9 +291,7 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
                 }
             },isCancelable = true)
         }
-        updateDialog?.let {
-            it.show()
-        }
+        updateDialog?.show()
     }
 
     private fun onDownloadApk(url: String) {
