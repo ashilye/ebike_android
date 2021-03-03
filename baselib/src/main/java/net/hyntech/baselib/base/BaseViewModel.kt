@@ -18,6 +18,9 @@ import java.lang.Exception
 
 open class BaseViewModel : ViewModel(), LifecycleObserver {
 
+    init {
+        resetPage()
+    }
 
     val defUI: UIChange by lazy { UIChange() }
 
@@ -207,6 +210,25 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
             stateViewEvent.postValue(ViewState.ERROR)
         }
     }
+
+
+    // 下拉刷新,加载更多相关
+    private var pageNo: Int = 1
+    private val pageSize: Int = 10
+    private var isLastPage: Boolean = true
+
+    fun resetPage(){
+        this.pageNo = 1
+        this.isLastPage = true
+    }
+
+    fun getIsLastPage():Boolean = isLastPage
+    fun setIsLastPage(value:Boolean){isLastPage = value}
+    fun incrementPageNo(){
+        this.pageNo += 1
+    }
+    fun getPageNo():Int = pageNo
+    fun getPageSize():Int = pageSize
 
 
     override fun onCleared() {

@@ -88,10 +88,6 @@ class AccountViewModel : BaseViewModel() {
 
 
 
-    private var pageNo: Int = 1
-    private var pageSize: Int = 10
-    var lastPage: Boolean = true
-
     val noticeList: MutableLiveData<List<NoticeListEntity.AlarmInfoListBean>> = MutableLiveData()
     val noticeListRefresh: MutableLiveData<List<NoticeListEntity.AlarmInfoListBean>> = MutableLiveData()
     val noticeListLoadMore: MutableLiveData<List<NoticeListEntity.AlarmInfoListBean>> = MutableLiveData()
@@ -104,12 +100,12 @@ class AccountViewModel : BaseViewModel() {
             if(!TextUtils.isEmpty(keyword)){
                 params.put("keyword",keyword)
             }
-            params.put("PrmPageNo",pageNo)
-            params.put("PrmItemsPerPage",pageSize)
+            params.put("PrmPageNo",getPageNo())
+            params.put("PrmItemsPerPage",getPageSize())
             repository.getNoticeList(params)
         }, success = {
             it?.let { data ->
-                lastPage = data.page?.isLastPage?:true
+                this.setIsLastPage(data.page?.isLastPage?:true)
                 if(data.alarmInfoList.isNullOrEmpty()){
                     //数据空
                     defUI.showUIEmpty()
@@ -143,44 +139,39 @@ class AccountViewModel : BaseViewModel() {
     }
 
     fun getNoticeListRefresh(keyword: String) {
-        pageNo = 1
-        lastPage = true
+       this.resetPage()
         launchOnlyResult({
             val params: WeakHashMap<String, Any> = WeakHashMap()
             if(!TextUtils.isEmpty(keyword)){
                 params.put("keyword",keyword)
             }
-            params.put("PrmPageNo",pageNo)
-            params.put("PrmItemsPerPage",pageSize)
+            params.put("PrmPageNo",getPageNo())
+            params.put("PrmItemsPerPage",getPageSize())
             repository.getNoticeList(params)
         }, success = {
             it?.let { data ->
-                lastPage = data.page?.isLastPage?:true
+                this.setIsLastPage(data.page?.isLastPage?:true)
                 noticeListRefresh.postValue(data.alarmInfoList)
             }
         },isShowDialog = false,isShowToast = false)
     }
 
     fun getNoticeListLoadMore(keyword: String) {
-        pageNo +=1
+        this.incrementPageNo()
         launchOnlyResult({
             val params: WeakHashMap<String, Any> = WeakHashMap()
             if(!TextUtils.isEmpty(keyword)){
                 params.put("keyword",keyword)
             }
-            params.put("PrmPageNo",pageNo)
-            params.put("PrmItemsPerPage",pageSize)
+            params.put("PrmPageNo",getPageNo())
+            params.put("PrmItemsPerPage",getPageSize())
             repository.getNoticeList(params)
         }, success = {
             it?.let { data ->
-                lastPage = data.page?.isLastPage?:true
+                this.setIsLastPage(data.page?.isLastPage?:true)
                 noticeListLoadMore.postValue(data.alarmInfoList)
             }
         },isShowDialog = false,isShowToast = false)
-
-
-
-
 
     }
 
