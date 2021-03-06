@@ -11,7 +11,6 @@ import net.hyntech.baselib.http.error.ApiException
 import net.hyntech.common.app.global.Constants
 import net.hyntech.common.utils.MD5Utils
 import java.util.*
-
 class HttpParamsUtils {
         companion object{
 

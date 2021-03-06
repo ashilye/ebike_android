@@ -33,9 +33,7 @@ class MyBannerAdapter(val context: Context,val list:List<BannerEntity>):BannerAd
 
         override fun setData(pos: Int, data: BannerEntity?) {
             data?.let { item ->
-                itemView.findViewById<ImageView>(R.id.iv_img)?.let {iv->
-                    iv.loadImage(if(item.type == 1) UIUtils.getDrawable(item.resId) else item.url)
-                }
+                itemView.findViewById<ImageView>(R.id.iv_img)?.loadImage(if(item.type == 1) UIUtils.getDrawable(item.resId) else item.url)
             }
         }
     }
