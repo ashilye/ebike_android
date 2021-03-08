@@ -72,7 +72,7 @@ class NoticeActivity : BaseListViewActivity<ActivityNoticeBinding, NoticeViewMod
         })
 
         viewModel.noticeListRefresh.observe(this, Observer {
-            LogUtils.logGGQ("刷新数据--->${it}")
+            LogUtils.logGGQ("刷新数据--->${it.size}")
             noticeAdapter.setData(it)
             finishRefresh()
         })
