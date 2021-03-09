@@ -122,7 +122,7 @@ class AccountViewModel : BaseViewModel() {
                         1 ->{
                             defUI.showUIEmpty()
                         }
-                        2 ->{
+                        else ->{
                             defUI.showUIError()
                         }
                     }
