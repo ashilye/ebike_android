@@ -10,6 +10,8 @@ import net.hyntech.common.R
 /***
  * 上层基础组件封装
  * 用于刷新组件页面
+ * xml 中刷新控件的id应为 common_refreshLayout
+ *     RecyclerView 控件的id应为  common_recyclerView
  */
 abstract class BaseListViewActivity<VB : ViewDataBinding, VM : BaseViewModel> : BaseViewActivity<VB, VM>() {
 
