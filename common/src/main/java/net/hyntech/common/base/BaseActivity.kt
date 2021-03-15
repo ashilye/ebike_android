@@ -38,17 +38,18 @@ abstract class BaseActivity : B() {
     private val multiState by lazy {
         if(hasUsedStateView()){
             this.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
-                override fun onRetryEvent(container: MultiStateContainer?) {
+                override fun onRetryEvent(multiStateContainer: MultiStateContainer) {
                     onClickProxy {
-                        onStateRetry(container)
+                        onStateRetry(multiStateContainer)
                     }
                 }
             }) ?: bindMultiState(object : OnRetryEventListener {
-                override fun onRetryEvent(container: MultiStateContainer?) {
+                override fun onRetryEvent(multiStateContainer: MultiStateContainer) {
                     onClickProxy {
-                        onStateRetry(container)
+                        onStateRetry(multiStateContainer)
                     }
                 }
+
             })
         }else{ null }
     }

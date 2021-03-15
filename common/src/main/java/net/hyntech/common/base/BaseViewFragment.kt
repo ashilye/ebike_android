@@ -66,15 +66,15 @@ abstract class BaseViewFragment<VB : ViewDataBinding, VM : BaseViewModel>: net.h
         return if(hasUsedStateView()){
             multiState = binding.root.let {rootView ->
                 rootView.findViewById<View>(R.id.common_container)?.bindMultiState(object : OnRetryEventListener {
-                    override fun onRetryEvent(container: MultiStateContainer?) {
+                    override fun onRetryEvent(multiStateContainer: MultiStateContainer) {
                         onClickProxy {
-                            onStateRetry(container)
+                            onStateRetry(multiStateContainer)
                         }
                     }
                 }) ?: rootView.bindMultiState(object : OnRetryEventListener {
-                    override fun onRetryEvent(container: MultiStateContainer?) {
+                    override fun onRetryEvent(multiStateContainer: MultiStateContainer) {
                         onClickProxy {
-                            onStateRetry(container)
+                            onStateRetry(multiStateContainer)
                         }
                     }
                 })

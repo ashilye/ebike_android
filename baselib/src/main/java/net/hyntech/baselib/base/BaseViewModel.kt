@@ -88,9 +88,7 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
     fun <T> launchOnlyResult(
         block: suspend CoroutineScope.() -> BaseResponse<T>,
         success: (T?) -> Unit,
-        error: (ResponseThrowable) -> Unit = {
-            defUI.toastEvent.postValue(it.errMsg)
-        },
+        error: (ResponseThrowable) -> Unit = {},
         complete: () -> Unit = {},
         isShowDialog: Boolean = true,
         isShowToast: Boolean = true
@@ -109,7 +107,10 @@ open class BaseViewModel : ViewModel(), LifecycleObserver {
                     }
                 },
                 {
-                    if (isShowToast) error(it)
+                    if (isShowToast){
+                        defUI.toastEvent.postValue(it.errMsg)
+                    }
+                    error(it)
                 },
                 {
                     if (isShowDialog) defUI.dismissDialog.call()
