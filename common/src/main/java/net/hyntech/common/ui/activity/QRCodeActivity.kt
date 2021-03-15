@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageButton
 import androidx.annotation.LayoutRes
 import androidx.camera.view.PreviewView
 import com.google.zxing.Result
@@ -29,7 +30,9 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
     override fun getLayoutId(): Int = R.layout.activity_qrcode
 
     override fun initData(savedInstanceState: Bundle?) {
-
+        this.findViewById<ImageButton>(getBackId())?.setOnClickListener {
+            this.finish()
+        }
         previewView = findViewById(getPreviewViewId())
         val viewfinderViewId: Int = getViewfinderViewId()
         if (viewfinderViewId != 0) {
@@ -215,6 +218,9 @@ class QRCodeActivity : BaseActivity(), CameraScan.OnScanResultCallback {
         return mCameraScan
     }
 
+    fun getBackId(): Int {
+        return R.id.left_back
+    }
     /**
      * 接收扫码结果回调
      * @param result 扫码结果
