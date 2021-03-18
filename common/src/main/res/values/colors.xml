@@ -28,6 +28,6 @@
     <color name="common_color_normal">#38B7FE</color>
     <color name="common_color_enable">#3338B7FE</color>
 
-
     <color name="common_color_badge">#FF5E51</color>
+    <color name="common_color_red">#FF5E51</color>
 </resources>

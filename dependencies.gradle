@@ -104,5 +104,10 @@ ext {
 
     androidxs = androidx.values()
 
+//    retrofit2 + coroutines
+//    room
+//    kotlin
+//    arouter
+//    glide
 }
 

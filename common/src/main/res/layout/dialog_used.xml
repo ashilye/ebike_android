@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:ignore="ResourceName">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_radius"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/common_black"
+            android:textSize="@dimen/common_font_text"
+            android:textStyle="bold"
+            android:text="@string/common_tip_warm"
+            tools:text="title" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="62dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:textColor="@color/common_black"
+            android:textSize="@dimen/common_font_text"
+            tools:text="content" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancle"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/selector_radius_cancel"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="@color/common_gray"
+                android:textSize="@dimen/common_font_mini"
+                android:text="不同意" />
+
+
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/selector_radius_define"
+                style="?android:attr/borderlessButtonStyle"
+                android:textColor="@color/white"
+                android:textSize="@dimen/common_font_mini"
+                android:text="同意并继续" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
