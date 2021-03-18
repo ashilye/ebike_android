@@ -9,9 +9,11 @@ import net.hyntech.common.R
 /**
  *
  */
-class UsedDialog(context: Context,
-                 isCancelable:Boolean = false, val listener: OnClickListener): BaseCenterDialog(context,isCancelable = isCancelable,style = R.style.CommonDialogStyle) {
+class UsedDialog(context: Context, isCancelable:Boolean = false, val listener: OnClickListener): BaseCenterDialog(context,isCancelable = isCancelable,style = R.style.CommonDialogStyle) {
+    /**
 
+     *
+     */
     override fun getLayoutId(): Int = R.layout.dialog_used
 
     override fun initData(savedInstanceState: Bundle?) {
