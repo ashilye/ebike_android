@@ -74,5 +74,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="百度地图" />
+
+        <net.hyntech.common.widget.view.IconFontView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_colorTheme"
+            android:textSize="23sp"
+            android:text="@string/common_icon_smile" />
     </LinearLayout>
 </layout>
