@@ -17,9 +17,9 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:gravity="center"
             android:textColor="@color/common_black"
             android:textSize="@dimen/common_font_text"
             android:textStyle="bold"
@@ -27,30 +27,31 @@
             tools:text="title" />
 
 
-        <ScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            android:layout_weight="1">
             <TextView
                 android:id="@+id/tv_content"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_gravity="center"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_gravity="start"
+                android:gravity="start"
                 android:lineSpacingMultiplier="1.2"
                 android:textColor="@color/common_black"
-                android:text="@string/common_used_content"
-                android:textSize="@dimen/common_font_text"
+                android:textSize="@dimen/common_font_mini"
                 tools:text="content" />
-        </ScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:paddingBottom="10dp"
+            android:paddingBottom="4dp"
             android:orientation="horizontal">
 
             <Button

@@ -16,25 +16,40 @@ import net.hyntech.test.R
 class SplashActivity : BaseActivity() {
 
     private val hasWelcome by lazy {
-        SPUtils.getInstance(BaseApp.instance.getAppPackage()).getBoolean(Constants.SaveInfoKey.HAS_WELCOME_TEST,false)
+        SPUtils.getInstance(BaseApp.instance.getAppPackage())
+            .getBoolean(Constants.SaveInfoKey.HAS_WELCOME_TEST, false)
     }
 
     private var dialog: CommonDialog? = null
 
-    private val usedDialog by lazy { UsedDialog(this,false,object : UsedDialog.OnClickListener {
-        override fun onConfirmClick() {
-            applyPermissions()
-        }
-    }) }
+    private val usedDialog by lazy {
+        UsedDialog(this, false, object : UsedDialog.OnClickListener {
+            override fun onCancelClick() {
+                onFinish()
+            }
+
+            override fun onConfirmClick() {
+                applyPermissions()
+            }
+
+            override fun onPolicyClick() {
+                showToast("隐私政策")
+            }
+
+            override fun onAgreementClick() {
+                showToast("用户协议")
+            }
+        })
+    }
 
     private val rxPermissions: RxPermissions by lazy { RxPermissions(this) }
 
     override fun getLayoutId(): Int = R.layout.activity_splash
 
     override fun initData(savedInstanceState: Bundle?) {
-        if(hasWelcome){
+        if (hasWelcome) {
             applyPermissions()
-        }else{
+        } else {
             showUsedDialog()
         }
     }
@@ -66,10 +81,10 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun launchTarget() {
-        if(hasWelcome){
-            onStartActivity(AccountActivity::class.java,isFinish = true)
-        }else{
-            onStartActivity(WelcomeActivity::class.java,isFinish = true)
+        if (hasWelcome) {
+            onStartActivity(AccountActivity::class.java, isFinish = true)
+        } else {
+            onStartActivity(WelcomeActivity::class.java, isFinish = true)
         }
     }
 
@@ -78,10 +93,11 @@ class SplashActivity : BaseActivity() {
             "权限申请",
             "请开启必要权限，否则您无法正常使用一些功能",
             "不同意",
-            "前往开启",object :CommonDialog.OnClickListener{
+            "前往开启", object : CommonDialog.OnClickListener {
                 override fun onCancelClick() {
                     onFinish()
-            }
+                }
+
                 override fun onConfirmClick() {
                     AppUtils.launchAppDetailsSettings()
                 }
