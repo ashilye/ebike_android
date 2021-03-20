@@ -81,5 +81,10 @@
             android:textColor="@color/common_colorTheme"
             android:textSize="23sp"
             android:text="@string/common_icon_smile" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
     </LinearLayout>
 </layout>

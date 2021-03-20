@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
@@ -28,11 +29,13 @@ import net.hyntech.baselib.utils.RequestPermission
 import net.hyntech.common.app.global.Code
 import net.hyntech.common.app.global.Constants
 import net.hyntech.common.base.BaseActivity
+import net.hyntech.common.base.BaseAdapter
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.ext.loadImage
 import net.hyntech.common.model.entity.AppUpdateEntity
 import net.hyntech.common.provider.ARouterConstants
 import net.hyntech.common.ui.activity.QRCodeActivity
+import net.hyntech.common.ui.adapter.MyImgAdapter
 import net.hyntech.common.utils.RegexUtils
 import net.hyntech.common.widget.dialog.CommonDialog
 import net.hyntech.common.widget.dialog.LiveDialog
@@ -240,6 +243,27 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
         binding.btnBdmap.setOnClickListener {
             ARouter.getInstance().build(ARouterConstants.BAIDU_MAP_PAGE).navigation(requireActivity(),Code.RequestCode.REQUEST_CODE_BAIDUMAP)
+        }
+
+
+        // 预览大图转场动画
+        binding.rvList.layoutManager = GridLayoutManager(this.requireContext(),2)
+        val myImgAdapter = MyImgAdapter(this@MineFragment.requireContext()).apply {
+            this.setListener(object :BaseAdapter.OnClickListener<String>{
+                override fun onItemClick(pos: Int, item: String?) {
+                    showToast(pos.toString())
+                }
+            })
+        }
+        val list = java.util.ArrayList<String>()
+        list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/f6dfa0aad1dc4672b2725b55546f147e.jpg")
+        list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/41fd054c25ea40ec80b621215117d0b7.jpg")
+        list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/7f6dbad84fbe4c498f147f53468edb63.jpg")
+        list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/6ab148ac98f34e738122aa8e38b9947a.jpg")
+        myImgAdapter.setData(list)
+        binding.rvList.apply {
+            this.layoutManager = GridLayoutManager(this@MineFragment.requireContext(),2)
+            this.adapter = myImgAdapter
         }
     }
 
