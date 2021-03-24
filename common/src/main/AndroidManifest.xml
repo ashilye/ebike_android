@@ -69,7 +69,8 @@
 
         <activity
             android:name=".ui.activity.PreviewActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/CommonTransitionsTheme" />
 
         <activity android:name=".ui.activity.QRCodeActivity"
             android:screenOrientation="portrait"
