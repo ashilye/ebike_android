@@ -2,6 +2,7 @@ package net.hyntech.common.ui.activity
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.ImageView
@@ -63,7 +64,7 @@ class PreviewActivity : BaseActivity() {
                 vp?.adapter = PreviewAdapter(this).apply {
                     this.setData(list!!)
                 }
-                vp?.currentItem = index
+                vp?.setCurrentItem(index,false)
                 tvIndex?.text = "${index+1}/${list?.size}"
                 vp?.registerOnPageChangeCallback(object : OnPageChangeCallback() {
                     override fun onPageSelected(position: Int) {
@@ -116,6 +117,13 @@ class PreviewActivity : BaseActivity() {
                }
            }
        }
+    }
 
+    override fun onFinish(isResultOK: Boolean) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            finishAfterTransition()
+        }else{
+            super.onFinish(isResultOK)
+        }
     }
 }

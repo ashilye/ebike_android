@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.transition.Fade
@@ -179,24 +181,6 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
             showToast(it)
         })
 
-        binding.btnPreview.setOnClickListener {
-
-            val bundle = Bundle()
-            val pos:Int = 2
-            val list = java.util.ArrayList<String>()
-            list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/f6dfa0aad1dc4672b2725b55546f147e.jpg")
-            list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/41fd054c25ea40ec80b621215117d0b7.jpg")
-            list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/7f6dbad84fbe4c498f147f53468edb63.jpg")
-            list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/6ab148ac98f34e738122aa8e38b9947a.jpg")
-            bundle.putSerializable(Constants.BundleKey.EXTRA_LIST,list)
-            bundle.putInt(Constants.BundleKey.EXTRA_INDEX,pos)
-
-            ARouter.getInstance().build(ARouterConstants.PREVIEW_PAGE)
-                .with(bundle)
-                .withTransition(R.anim.zoom_in,0)
-                .navigation(this@MineFragment.requireContext())
-
-        }
 
         binding.btnDialog.setOnClickListener {
             commonDialog.show()
@@ -258,17 +242,28 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
         list.add("http://oss-public.hyntech.net/appUpload/20201202/2018LENoOyAYmq/6ab148ac98f34e738122aa8e38b9947a.jpg")
         binding.rvList.layoutManager = GridLayoutManager(this.requireContext(),2)
         val myImgAdapter = MyImgAdapter(this@MineFragment.requireContext()).apply {
-            this.setListener(object :BaseAdapter.OnClickListener<String>{
-                override fun onItemClick(pos: Int, item: String?) {
+            this.setListener(object : MyImgAdapter.OnClickListener {
+                override fun onItemClick(view: View?, pos: Int, item: String?) {
                     //showToast(pos.toString())
                     val bundle = Bundle()
                     bundle.putSerializable(Constants.BundleKey.EXTRA_LIST,list)
                     bundle.putInt(Constants.BundleKey.EXTRA_INDEX,pos)
 
-                    ARouter.getInstance().build(ARouterConstants.PREVIEW_PAGE)
-                        .with(bundle)
-                        .withTransition(R.anim.zoom_in,0)
-                        .navigation(this@MineFragment.requireContext())
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+                        val pair:androidx.core.util.Pair<View, String> = androidx.core.util.Pair(view,pos.toString())
+                        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            this@MineFragment.requireActivity(),
+                            pair
+                        )
+                        ARouter.getInstance().build(ARouterConstants.PREVIEW_PAGE)
+                            .with(bundle)
+                            .withOptionsCompat(options)
+                            .navigation(this@MineFragment.requireContext())
+                    }else{
+                        ARouter.getInstance().build(ARouterConstants.PREVIEW_PAGE)
+                            .with(bundle)
+                            .navigation()
+                    }
                 }
             })
         }
