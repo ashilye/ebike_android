@@ -388,7 +388,7 @@ androidx.recyclerview.widget.LinearLayoutManager mLayoutManager;
 -keep class com.zy.multistatepage.**{*;}
 
 # 状态栏
--keep class com.zackratos.ultimatebarx.library.** { *; }
+-keep class com.zackratos.ultimatebarx.ultimatebarx.** { *; }
 -keep public class * extends androidx.fragment.app.Fragment { *; }
 
 # 百度ocr

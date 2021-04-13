@@ -84,9 +84,9 @@ ext {
             xUpdate                    : "com.github.xuexiangjys:XUpdate:2.0.7",
             okhttputils                : "com.zhy:okhttputils:2.6.2",
             //状态栏
-            ultimatebarx               : "com.zackratos.ultimatebarx:ultimatebarx:0.5.1",
+            ultimatebarx               : "com.zackratos.ultimatebarx:ultimatebarx:0.6.0",
             //扫码
-            zxingLite                  : "com.king.zxing:zxing-lite:2.0.2",
+            zxingLite                  : "com.king.zxing:zxing-lite:2.0.3",
             // 轮播图
             banner                     : "com.youth.banner:banner:2.1.0",
             //popup窗
