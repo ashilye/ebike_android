@@ -30,4 +30,14 @@
 
     <color name="common_color_badge">#FF5E51</color>
     <color name="common_color_red">#FF5E51</color>
+
+
+    <color name="common_viewfinder_corner">#FF1FB3E2</color>
+    <color name="common_viewfinder_frame" >#7F1FB3E2</color>
+    <color name="common_viewfinder_laser" >#FF1FB3E2</color>
+    <color name="common_viewfinder_mask" >#60000000</color>
+    <color name="common_viewfinder_text_color" >#FFC0C0C0</color>
+    <color name="common_zxl_capture_navigation_bar_color">#00000000</color>
+    <color name="common_zxl_capture_status_bar_color">#00000000</color>
+
 </resources>

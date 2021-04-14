@@ -6,6 +6,9 @@ apply plugin: 'kotlin-kapt'
 // navigation
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'com.huawei.agconnect'
+
+
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
@@ -119,6 +122,8 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     api project(path: ':baselib')
     api files('libs/BaiduLBS_Android.jar')
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -197,7 +202,7 @@ dependencies {
     api deps.xUpdate
     api deps.okhttputils
     //二维码扫描
-    api deps.zxingLite
+    api deps.scanKit
 
     // 图片选择器
     api deps.pictureSelector

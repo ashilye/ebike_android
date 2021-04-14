@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import androidx.viewpager2.widget.ViewPager2
-import com.king.zxing.CameraScan
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.common.app.global.Code

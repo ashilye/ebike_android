@@ -1,11 +1,8 @@
 package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.lifecycle.Observer
-import com.zackratos.ultimatebarx.library.UltimateBarX
-import net.hyntech.baselib.base.BaseViewModel
+import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
 import net.hyntech.common.base.BaseActivity
 import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.ext.afterTextChanged

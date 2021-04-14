@@ -2,7 +2,7 @@ package net.hyntech.common.base
 
 import android.app.Activity
 import android.content.Intent
-import com.zackratos.ultimatebarx.library.UltimateBarX
+import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
 import kotlinx.android.synthetic.main.include_title.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking

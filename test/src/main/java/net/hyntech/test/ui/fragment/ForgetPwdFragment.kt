@@ -2,7 +2,7 @@ package net.hyntech.test.ui.fragment
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.zackratos.ultimatebarx.library.UltimateBarX
+import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
 import net.hyntech.baselib.utils.LogUtils
 import net.hyntech.baselib.utils.UIUtils
 import net.hyntech.common.base.BaseViewFragment

@@ -14,7 +14,9 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.PathUtils
-import com.king.zxing.CameraScan
+import com.blankj.utilcode.util.VibrateUtils
+import com.huawei.hms.hmsscankit.ScanUtil
+import com.huawei.hms.ml.scan.HmsScan
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.config.PictureMimeType
@@ -37,7 +39,7 @@ import net.hyntech.common.base.BaseViewFragment
 import net.hyntech.common.ext.loadImage
 import net.hyntech.common.model.entity.AppUpdateEntity
 import net.hyntech.common.provider.ARouterConstants
-import net.hyntech.common.ui.activity.QRCodeActivity
+import net.hyntech.common.ui.activity.MyScanKitActivity
 import net.hyntech.common.ui.adapter.MyImgAdapter
 import net.hyntech.common.utils.RegexUtils
 import net.hyntech.common.widget.dialog.CommonDialog
@@ -48,6 +50,7 @@ import net.hyntech.common.widget.update.UpdateDialog
 import net.hyntech.test.R
 import net.hyntech.test.databinding.FragmentMineBinding
 import net.hyntech.test.vm.HomeViewModel
+import org.w3c.dom.Text
 import java.io.File
 
 class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBinding,HomeViewModel>() {
@@ -226,7 +229,10 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
 
 
         binding.btnQrcode.setOnClickListener {
-            startActivityForResult(Intent(requireActivity(),QRCodeActivity::class.java),Code.RequestCode.REQUEST_CODE_QRCODE)
+
+
+            startActivityForResult(Intent(requireActivity(),MyScanKitActivity::class.java),Code.RequestCode.REQUEST_CODE_QRCODE)
+
         }
 
         binding.btnBdmap.setOnClickListener {
@@ -281,9 +287,10 @@ class MineFragment(val viewModel: HomeViewModel):BaseViewFragment<FragmentMineBi
         when(requestCode){
             Code.RequestCode.REQUEST_CODE_QRCODE ->{
                 data?.let {
-                    val content = it.getStringExtra(CameraScan.SCAN_RESULT)
-                    if(!TextUtils.isEmpty(content)){
-                        showToast("扫描结果：${content}")
+                    val hmsScan: HmsScan? = it.getParcelableExtra<HmsScan>(ScanUtil.RESULT)
+                    if(hmsScan != null && !TextUtils.isEmpty(hmsScan.originalValue)){
+                        VibrateUtils.vibrate(300)
+                        showToast("扫描结果：${hmsScan.originalValue}")
                     }
                 }
             }

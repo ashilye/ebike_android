@@ -1,26 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.activity.MyScanKitActivity"
     tools:ignore="ResourceName">
 
 
-    <androidx.camera.view.PreviewView
-        android:id="@+id/previewView"
+    <!-- customize layout needed by scankit for camera preview -->
+    <FrameLayout
+        android:id="@+id/rim"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#C0C0C0"></FrameLayout>
 
-    <com.king.zxing.ViewfinderView
+
+    <!--  customize scanning mask  -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.1"
+        android:background="#FF000000" />
+
+    <!--  customize scanning viewfinder  -->
+    <net.hyntech.common.widget.view.ViewfinderView
         android:id="@+id/viewfinderView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:frameColor="#6638B7FE"
-        app:cornerColor="@color/common_colorPrimary"
-        app:laserColor="@color/common_colorPrimary"
+        app:cornerColor="#38B7FE"
+        app:laserColor="#38B7FE"
         app:scannerLineMoveDistance="5dp"
-        app:labelText="请放置到扫码框内"
+        app:labelText="请放置到扫码框内进行扫描"
         app:labelTextSize="12sp"
         app:laserStyle="grid" />
 
@@ -40,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center_horizontal"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="120dp"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/ivFlashlight"
@@ -48,6 +62,7 @@
             android:layout_weight="1"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:src="@drawable/selector_flashlight" />
 

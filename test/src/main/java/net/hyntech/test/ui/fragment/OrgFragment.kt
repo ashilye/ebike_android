@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.zackratos.ultimatebarx.library.UltimateBarX
+import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
 import com.zy.multistatepage.MultiStateContainer
 import net.hyntech.baselib.base.BaseViewModel
 import net.hyntech.baselib.base.ViewState

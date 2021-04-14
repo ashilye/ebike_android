@@ -76,5 +76,10 @@
       <option name="name" value="maven2" />
       <option name="url" value="https://jitpack.io" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven9" />
+      <option name="name" value="maven9" />
+      <option name="url" value="https://developer.huawei.com/repo/" />
+    </remote-repository>
   </component>
 </project>

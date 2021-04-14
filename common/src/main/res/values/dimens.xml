@@ -14,4 +14,5 @@
     <dimen name="common_padding">12dp</dimen>
     <dimen name="common_gap">4dp</dimen>
 
+    <dimen name="common_zxl_flashlight_margin_top">80dp</dimen>
 </resources>

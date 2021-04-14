@@ -3,7 +3,7 @@ package net.hyntech.common.base
 import android.app.Activity
 import android.content.Intent
 import android.view.View
-import com.zackratos.ultimatebarx.library.UltimateBarX
+import com.zackratos.ultimatebarx.ultimatebarx.UltimateBarX
 import com.zy.multistatepage.MultiStateContainer
 import com.zy.multistatepage.OnRetryEventListener
 import com.zy.multistatepage.bindMultiState
